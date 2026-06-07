@@ -136,10 +136,40 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;height:78px;}
 .brand{display:flex;align-items:center;gap:11px;font-weight:700;font-size:20px;letter-spacing:-0.02em;}
 .brand .mark{
-  width:36px;height:36px;display:grid;place-items:center;position:relative;
+  width:36px;height:36px;display:grid;place-items:center;position:relative;overflow:visible;
 }
-.brand .mark img{width:100%;height:100%;object-fit:contain;display:block;filter:drop-shadow(0 5px 12px rgba(36,86,230,.4));transition:transform .4s var(--ease);}
-.brand:hover .mark img{transform:scale(1.07) rotate(-3deg);}
+/* pulsing energy halo behind the J */
+.brand .mark::before{
+  content:"";position:absolute;inset:-8px;border-radius:50%;z-index:0;
+  background:radial-gradient(circle, var(--accent-glow) 0%, rgba(36,86,230,.25) 45%, transparent 72%);
+  animation:logoHalo 3s ease-in-out infinite;
+}
+/* second, faster sonar ring for extra intensity */
+.brand .mark::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;z-index:0;
+  border:2px solid var(--accent);
+  animation:logoRing 3s ease-in-out infinite;
+}
+.brand .mark img{
+  position:relative;z-index:1;
+  width:100%;height:100%;object-fit:contain;display:block;
+  filter:drop-shadow(0 4px 12px rgba(36,86,230,.45));
+  transition:transform .4s var(--ease),filter .4s var(--ease);
+  animation:logoBreathe 3s ease-in-out infinite;
+}
+.brand:hover .mark img{transform:scale(1.16) rotate(-4deg);filter:drop-shadow(0 6px 20px rgba(36,86,230,.85));animation-play-state:paused;}
+@keyframes logoBreathe{
+  0%,100%{transform:scale(1);filter:drop-shadow(0 4px 12px rgba(36,86,230,.45));}
+  50%{transform:scale(1.08);filter:drop-shadow(0 6px 22px rgba(36,86,230,.9));}
+}
+@keyframes logoHalo{
+  0%,100%{transform:scale(.75);opacity:.35;}
+  50%{transform:scale(1.15);opacity:.95;}
+}
+@keyframes logoRing{
+  0%{transform:scale(.8);opacity:.7;}
+  70%,100%{transform:scale(1.6);opacity:0;}
+}
 @keyframes shine{0%,70%{transform:translateX(-120%);}85%,100%{transform:translateX(120%);}}
 .brand span.sub{color:var(--muted-2);font-weight:500;font-size:20px;}
 .nav-links{display:flex;align-items:center;gap:34px;}
@@ -186,25 +216,25 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;}
 .glow.a{width:620px;height:620px;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-220px;right:-120px;opacity:.2;}
 .glow.b{width:520px;height:520px;background:radial-gradient(circle,#5680f2 0%,transparent 65%);bottom:-260px;left:-160px;opacity:.14;}
-.bg-logo{position:absolute;pointer-events:none;will-change:transform;transform-style:preserve-3d;filter:drop-shadow(0 24px 44px rgba(36,86,230,.3));}
-.bg-logo.l1{width:330px;top:3%;right:4%;opacity:.16;animation:float3d-1 14s ease-in-out infinite;}
-.bg-logo.l2{width:165px;bottom:6%;left:3%;opacity:.2;animation:float3d-2 11s ease-in-out infinite;}
-.bg-logo.l3{width:90px;top:15%;left:35%;opacity:.13;animation:float3d-3 9s ease-in-out infinite;}
-@keyframes float3d-1{
-  0%{transform:rotateX(14deg) rotateY(-28deg) translateY(0) translateZ(0);}
-  50%{transform:rotateX(-8deg) rotateY(24deg) translateY(-30px) translateZ(70px);}
-  100%{transform:rotateX(14deg) rotateY(-28deg) translateY(0) translateZ(0);}
+/* ---- settled background swoosh (replaces floating Js): fades in as the intro finishes ---- */
+.hero-swoosh{
+  position:absolute;top:7%;right:5%;width:340px;height:340px;
+  display:grid;place-items:center;pointer-events:none;
+  opacity:0;
+  animation:swooshSettleIn 1.5s ease-out 1.45s forwards, swooshDrift 18s ease-in-out 3s infinite;
 }
-@keyframes float3d-2{
-  0%{transform:rotateX(-12deg) rotateY(20deg) translateY(0) translateZ(0);}
-  50%{transform:rotateX(12deg) rotateY(-26deg) translateY(26px) translateZ(50px);}
-  100%{transform:rotateX(-12deg) rotateY(20deg) translateY(0) translateZ(0);}
+.hero-swoosh img{
+  width:300px;height:300px;object-fit:contain;position:relative;z-index:2;opacity:.17;
+  filter:drop-shadow(0 18px 46px rgba(36,86,230,.55)) saturate(1.2);
 }
-@keyframes float3d-3{
-  0%{transform:rotateX(8deg) rotateY(-14deg) translate(0,0) translateZ(0);}
-  50%{transform:rotateX(-16deg) rotateY(32deg) translate(16px,-22px) translateZ(40px);}
-  100%{transform:rotateX(8deg) rotateY(-14deg) translate(0,0) translateZ(0);}
+.hero-swoosh .trail{
+  position:absolute;top:50%;right:34%;transform:translateY(-50%);
+  width:72vw;max-width:920px;height:60px;border-radius:60px;z-index:1;
+  background:linear-gradient(to left, rgba(36,86,230,.5) 0%, rgba(86,128,242,.2) 34%, rgba(86,128,242,0) 80%);
+  filter:blur(28px);
 }
+@keyframes swooshSettleIn{from{opacity:0;}to{opacity:1;}}
+@keyframes swooshDrift{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-16px) rotate(2.5deg);}}
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
 .hero-copy{max-width:600px;}
 .hero-badge{
@@ -527,10 +557,61 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   *{animation:none!important;transition-duration:.01ms!important;}
   .reveal{opacity:1;transform:none;}
   html{scroll-behavior:auto;}
+  #intro{display:none!important;}
+  .hero-swoosh{opacity:1!important;}
+}
+
+/* ============================================================
+   INTRO REVEAL — vivid J swooshes across, blue trail, wipes to reveal
+   ============================================================ */
+#intro{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;}
+#intro.gone{display:none;}
+/* the cover that gets wiped away to reveal the site */
+.intro-cover{
+  position:absolute;top:0;bottom:0;left:0;width:100%;
+  background:#f3f4f7;
+  box-shadow:-26px 0 70px -6px rgba(36,86,230,.55), -3px 0 0 0 rgba(36,86,230,.9);
+  animation:introCover 1.9s cubic-bezier(.66,0,.34,1) forwards;
+}
+@keyframes introCover{
+  0%{transform:translateX(0);}
+  100%{transform:translateX(100.5%);}
+}
+/* the flying J + its trail */
+.intro-runner{
+  position:absolute;left:0;top:50%;width:210px;height:210px;margin-top:-105px;
+  display:grid;place-items:center;
+  animation:introRun 1.9s cubic-bezier(.66,0,.34,1) forwards;
+}
+.intro-runner img{
+  width:200px;height:200px;object-fit:contain;position:relative;z-index:2;
+  filter:drop-shadow(0 0 34px rgba(36,86,230,.95)) drop-shadow(0 0 14px rgba(36,86,230,1)) saturate(1.5) brightness(1.04);
+}
+.intro-trail{
+  position:absolute;top:50%;right:50%;transform:translateY(-50%);
+  width:74vw;height:54px;border-radius:60px;z-index:1;
+  background:linear-gradient(to left, rgba(36,86,230,.9) 0%, rgba(86,128,242,.5) 28%, rgba(86,128,242,0) 78%);
+  filter:blur(20px);
+}
+@keyframes introRun{
+  0%{transform:translate(-14vw,9vh) rotate(-20deg) scale(.85);opacity:0;}
+  10%{opacity:1;}
+  50%{transform:translate(46vw,-5vh) rotate(5deg) scale(1.12);}
+  88%{opacity:1;}
+  100%{transform:translate(112vw,8vh) rotate(22deg) scale(.95);opacity:0;}
 }
 </style>
 </head>
 <body>
+
+<!-- ========================= INTRO REVEAL ========================= -->
+<div id="intro">
+  <div class="intro-cover"></div>
+  <div class="intro-runner">
+    <span class="intro-trail"></span>
+    <img src="assets/logo.png" alt="" />
+  </div>
+</div>
 
 <!-- ========================= NAV ========================= -->
 <nav class="nav" id="nav">
@@ -565,9 +646,10 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
     <div class="hero-grid"></div>
     <div class="glow a" data-parallax="0.06"></div>
     <div class="glow b" data-parallax="0.1"></div>
-    <img class="bg-logo l1" src="assets/logo.png" alt="" aria-hidden="true" />
-    <img class="bg-logo l2" src="assets/logo.png" alt="" aria-hidden="true" />
-    <img class="bg-logo l3" src="assets/logo.png" alt="" aria-hidden="true" />
+    <div class="hero-swoosh">
+      <span class="trail"></span>
+      <img src="assets/logo.png" alt="" aria-hidden="true" />
+    </div>
   </div>
   <div class="container hero-inner">
     <div class="hero-copy">
@@ -1183,6 +1265,15 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
     var el=document.getElementById(id);
     el.addEventListener('input',function(){ if(el.closest('.field').classList.contains('invalid')) setErr(id,false); });
   });
+})();
+
+/* remove the intro overlay once the swoosh finishes so it never blocks clicks */
+(function(){
+  var intro=document.getElementById('intro');
+  if(!intro) return;
+  var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){ intro.classList.add('gone'); return; }
+  setTimeout(function(){ intro.classList.add('gone'); }, 2100);
 })();
 </script>
 
