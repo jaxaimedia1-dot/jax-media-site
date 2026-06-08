@@ -191,7 +191,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   position:absolute;top:7%;right:5%;width:340px;height:340px;
   display:grid;place-items:center;pointer-events:none;
   opacity:0;
-  animation:swooshSettleIn 1.5s ease-out 1.45s forwards, swooshDrift 18s ease-in-out 3s infinite;
+  animation:swooshSettleIn 1.4s ease-out 2.7s forwards, swooshDrift 18s ease-in-out 4.4s infinite;
 }
 .hero-swoosh img{
   width:300px;height:300px;object-fit:contain;position:relative;z-index:2;opacity:.17;
@@ -534,41 +534,35 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 /* ============================================================
    INTRO REVEAL — vivid J swooshes across, blue trail, wipes to reveal
    ============================================================ */
-#intro{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;}
+#intro{position:fixed;inset:0;z-index:9999;pointer-events:none;overflow:hidden;display:grid;place-items:center;perspective:1200px;}
 #intro.gone{display:none;}
-/* the cover that gets wiped away to reveal the site */
+/* full-screen cover that fades out at the end to reveal the site */
 .intro-cover{
-  position:absolute;top:0;bottom:0;left:0;width:100%;
+  position:absolute;inset:0;
   background:#f3f4f7;
-  box-shadow:-26px 0 70px -6px rgba(36,86,230,.55), -3px 0 0 0 rgba(36,86,230,.9);
-  animation:introCover 1.9s cubic-bezier(.66,0,.34,1) forwards;
+  animation:introCover 3.1s ease-in-out forwards;
+  will-change:opacity;
 }
 @keyframes introCover{
-  0%{transform:translateX(0);}
-  100%{transform:translateX(100.5%);}
+  0%,70%{opacity:1;}
+  100%{opacity:0;}
 }
-/* the flying J + its trail */
+/* the J extruded into a REAL 3D object (stacked layers), spinning slowly, centered */
 .intro-runner{
-  position:absolute;left:0;top:50%;width:210px;height:210px;margin-top:-105px;
+  position:relative;width:220px;height:220px;
   display:grid;place-items:center;
-  animation:introRun 1.9s cubic-bezier(.66,0,.34,1) forwards;
+  transform-style:preserve-3d;
+  animation:introSpin 3.1s cubic-bezier(.42,.04,.32,1) forwards;
+  will-change:transform,opacity;
 }
-.intro-runner img{
-  width:200px;height:200px;object-fit:contain;position:relative;z-index:2;
-  filter:drop-shadow(0 0 34px rgba(36,86,230,.95)) drop-shadow(0 0 14px rgba(36,86,230,1)) saturate(1.5) brightness(1.04);
-}
-.intro-trail{
-  position:absolute;top:50%;right:50%;transform:translateY(-50%);
-  width:74vw;height:54px;border-radius:60px;z-index:1;
-  background:linear-gradient(to left, rgba(36,86,230,.9) 0%, rgba(86,128,242,.5) 28%, rgba(86,128,242,0) 78%);
-  filter:blur(20px);
-}
-@keyframes introRun{
-  0%{transform:translate(-14vw,9vh) rotate(-20deg) scale(.85);opacity:0;}
-  10%{opacity:1;}
-  50%{transform:translate(46vw,-5vh) rotate(5deg) scale(1.12);}
-  88%{opacity:1;}
-  100%{transform:translate(112vw,8vh) rotate(22deg) scale(.95);opacity:0;}
+.j3d{position:relative;width:200px;height:200px;transform-style:preserve-3d;}
+.j3d img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
+/* 3D spin: zoom in, rotate a full 360° on the Y axis (tilted for depth), then fade away */
+@keyframes introSpin{
+  0%{transform:rotateX(16deg) rotateY(0deg) scale(.55);opacity:0;}
+  12%{opacity:1;}
+  78%{transform:rotateX(16deg) rotateY(360deg) scale(1);opacity:1;}
+  100%{transform:rotateX(16deg) rotateY(404deg) scale(1.2);opacity:0;}
 }
 </style>
 </head>
@@ -578,10 +572,27 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 <div id="intro">
   <div class="intro-cover"></div>
   <div class="intro-runner">
-    <span class="intro-trail"></span>
-    <img src="assets/logo.png" alt="" />
+    <div class="j3d" id="j3d"></div>
   </div>
 </div>
+<script>
+/* build the J as a real 3D extrusion: stack many copies along Z; bright front/back faces, darker middle layers form the side thickness */
+(function(){
+  var host=document.getElementById('j3d'); if(!host) return;
+  var N=22, step=1.15;               /* ~24px of depth */
+  for(var i=0;i<N;i++){
+    var im=document.createElement('img');
+    im.src='assets/logo.png'; im.alt='';
+    var z=(i-(N-1)/2)*step;
+    var isFace=(i===0||i===N-1);
+    im.style.transform='translateZ('+z.toFixed(2)+'px)';
+    im.style.filter=isFace
+      ? 'drop-shadow(0 0 20px rgba(36,86,230,.85)) saturate(1.35) brightness(1.04)'
+      : 'brightness(.45) saturate(1.4)';
+    host.appendChild(im);
+  }
+})();
+</script>
 
 <!-- ========================= NAV ========================= -->
 <nav class="nav" id="nav">
@@ -1027,7 +1038,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
         <div class="contact-info">
           <div class="cinfo">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-            <div><div class="k">Email us</div><a class="v" href="mailto:jaxaimedia1@gmail.com">jaxaimedia1@gmail.com</a></div>
+            <div><div class="k">Email us</div><a class="v" href="/cdn-cgi/l/email-protection#b7ddd6cfd6dedad2d3ded686f7d0dad6dedb99d4d8da"><span class="__cf_email__" data-cfemail="bdd7dcc5dcd4d0d8d9d4dc8cfddad0dcd4d193ded2d0">[email&#160;protected]</span></a></div>
           </div>
           <div class="cinfo">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
@@ -1073,7 +1084,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
         <div class="foot-col">
           <h4>Get Started</h4>
           <a href="#contact">Book a Call</a>
-          <a href="mailto:jaxaimedia1@gmail.com">Email Us</a>
+          <a href="/cdn-cgi/l/email-protection#0d676c756c64606869646c3c4d6a606c6461236e6260">Email Us</a>
           <a href="tel:+18022301765">+1 802 230 1765</a>
         </div>
       </div>
@@ -1085,7 +1096,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 (function(){
   'use strict';
   var nav=document.getElementById('nav');
@@ -1243,7 +1254,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   if(!intro) return;
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(reduce){ intro.classList.add('gone'); return; }
-  setTimeout(function(){ intro.classList.add('gone'); }, 2100);
+  setTimeout(function(){ intro.classList.add('gone'); }, 3250);
 })();
 </script>
 
