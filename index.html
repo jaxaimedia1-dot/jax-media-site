@@ -186,25 +186,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;}
 .glow.a{width:620px;height:620px;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-220px;right:-120px;opacity:.2;}
 .glow.b{width:520px;height:520px;background:radial-gradient(circle,#5680f2 0%,transparent 65%);bottom:-260px;left:-160px;opacity:.14;}
-/* ---- settled background swoosh (replaces floating Js): fades in as the intro finishes ---- */
-.hero-swoosh{
-  position:absolute;top:7%;right:5%;width:340px;height:340px;
-  display:grid;place-items:center;pointer-events:none;
-  opacity:0;
-  animation:swooshSettleIn 1.4s ease-out 2.7s forwards, swooshDrift 18s ease-in-out 4.4s infinite;
-}
-.hero-swoosh img{
-  width:300px;height:300px;object-fit:contain;position:relative;z-index:2;opacity:.17;
-  filter:drop-shadow(0 18px 46px rgba(36,86,230,.55)) saturate(1.2);
-}
-.hero-swoosh .trail{
-  position:absolute;top:50%;right:34%;transform:translateY(-50%);
-  width:72vw;max-width:920px;height:60px;border-radius:60px;z-index:1;
-  background:linear-gradient(to left, rgba(36,86,230,.5) 0%, rgba(86,128,242,.2) 34%, rgba(86,128,242,0) 80%);
-  filter:blur(28px);
-}
-@keyframes swooshSettleIn{from{opacity:0;}to{opacity:1;}}
-@keyframes swooshDrift{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-16px) rotate(2.5deg);}}
+
 .hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
 .hero-copy{max-width:600px;}
 .hero-badge{
@@ -278,6 +260,14 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .chip.c2 .ic{background:var(--accent-glow);color:var(--accent-soft);}
 @keyframes float1{0%,100%{transform:translateY(0);}50%{transform:translateY(-14px);}}
 @keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
+
+/* hero visual: continuously-spinning 3D J (replaces old browser mockup) */
+.hero-j3d-stage{position:relative;min-height:480px;display:grid;place-items:center;perspective:1400px;}
+.hero-j3d-stage::before{content:"";position:absolute;inset:8%;background:radial-gradient(closest-side,var(--accent-glow),transparent 72%);filter:blur(10px);pointer-events:none;}
+.hero-j3d-stage .j3d{position:relative;width:380px;height:380px;animation:heroJSpin 9s linear infinite;}
+@keyframes heroJSpin{from{transform:rotateX(14deg) rotateY(0deg);}to{transform:rotateX(14deg) rotateY(360deg);}}
+@media(max-width:1080px){.hero-j3d-stage{min-height:380px;}.hero-j3d-stage .j3d{width:300px;height:300px;}}
+@media(prefers-reduced-motion:reduce){.hero-j3d-stage .j3d{animation:none;transform:rotateX(14deg) rotateY(28deg);}}
 
 /* ============================================================
    MARQUEE / STATS STRIP
@@ -523,12 +513,20 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .before-after{flex-direction:column;}
   .hero-actions .btn{flex:1;}
 }
+@media(max-width:600px){
+  /* direct-edit drag-resizes on the hero heading/sub were pinned to desktop pixel
+     boxes — let them reflow fluidly on phones instead of overflowing/clipping */
+  .hero-copy h1{width:auto!important;height:auto!important;}
+  .hero-copy h1 em{width:auto!important;height:auto!important;}
+  .hero-copy .sub{width:auto!important;height:auto!important;}
+  .hero-j3d-stage{min-height:320px;}
+  .hero-j3d-stage .j3d{width:240px;height:240px;}
+}
 @media(prefers-reduced-motion:reduce){
   *{animation:none!important;transition-duration:.01ms!important;}
   .reveal{opacity:1;transform:none;}
   html{scroll-behavior:auto;}
   #intro{display:none!important;}
-  .hero-swoosh{opacity:1!important;}
 }
 
 /* ============================================================
@@ -577,12 +575,12 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 </div>
 <script>
 /* build the J as a real 3D extrusion: stack many copies along Z; bright front/back faces, darker middle layers form the side thickness */
-(function(){
-  var host=document.getElementById('j3d'); if(!host) return;
+function buildJ3D(hostId){
+  var host=document.getElementById(hostId); if(!host) return;
   var N=22, step=1.15;               /* ~24px of depth */
   for(var i=0;i<N;i++){
     var im=document.createElement('img');
-    im.src='assets/logo.png'; im.alt='';
+    im.src='assets/logo-j.png'; im.alt='';
     var z=(i-(N-1)/2)*step;
     var isFace=(i===0||i===N-1);
     im.style.transform='translateZ('+z.toFixed(2)+'px)';
@@ -591,7 +589,11 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
       : 'brightness(.45) saturate(1.4)';
     host.appendChild(im);
   }
-})();
+}
+document.addEventListener('DOMContentLoaded', function(){
+  buildJ3D('j3d');
+  buildJ3D('heroJ3d');
+});
 </script>
 
 <!-- ========================= NAV ========================= -->
@@ -600,13 +602,11 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
     <a href="#top" class="brand"><span class="mark"><img src="assets/logo.png" alt="Jax Media" /></span>Jax<span class="sub">Media</span></a>
     <div class="nav-links">
       <a href="#services" class="link">Services</a>
-      <a href="#work" class="link">Work</a>
       <a href="#pricing" class="link">Pricing</a>
       <a href="#process" class="link">Process</a>
       <a href="#faq" class="link">FAQ</a>
     </div>
     <div class="nav-cta">
-      <a href="#work" class="btn btn-ghost">View Our Work</a>
       <a href="#contact" class="btn btn-primary">Book a Free Call</a>
       <button class="nav-toggle" id="navToggle" aria-label="Menu"><span></span></button>
     </div>
@@ -614,7 +614,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
-  <a href="#work">Work</a>
   <a href="#pricing">Pricing</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
@@ -627,19 +626,14 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
     <div class="hero-grid"></div>
     <div class="glow a" data-parallax="0.06"></div>
     <div class="glow b" data-parallax="0.1"></div>
-    <div class="hero-swoosh">
-      <span class="trail"></span>
-      <img src="assets/logo.png" alt="" aria-hidden="true" />
-    </div>
   </div>
   <div class="container hero-inner">
     <div class="hero-copy">
       <div class="hero-badge"><span class="dot"></span>Now booking projects for Q3 2026</div>
-      <h1>Turn More Visitors Into <em>Customers</em></h1>
-      <p class="sub">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
+      <h1 style="width: 404px; height: 214px">Turn More Visitors Into <em style="width: 456px; height: 87px">Customers</em></h1>
+      <p class="sub" style="width: 547px; height: 121px">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
       <div class="hero-actions">
         <a href="#contact" class="btn btn-primary">Book a Free Consultation <span class="arr">→</span></a>
-        <a href="#work" class="btn btn-ghost">View Our Work</a>
       </div>
       <div class="hero-trust">
         <span class="stars">★★★★★</span>
@@ -649,38 +643,11 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
       </div>
     </div>
 
+    <div class="hero-j3d-stage">
+      <div class="j3d" id="heroJ3d"></div>
+    </div>
     <div class="hero-visual">
       <div class="mock-wrap" id="mockWrap">
-        <div class="browser">
-          <div class="browser-bar">
-            <div class="dots"><i></i><i></i><i></i></div>
-            <div class="url"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>jaxaimedia.com</div>
-          </div>
-          <div class="browser-body">
-            <div class="mini-nav">
-              <div class="mini-logo">North<b>Star</b></div>
-              <div class="mini-links"><i></i><i></i><i></i><div class="mini-btn">Get Quote</div></div>
-            </div>
-            <div class="mini-hero">
-              <h4>Grow your business <em>faster</em></h4>
-              <p>High-converting websites that turn clicks into booked, paying customers.</p>
-              <div class="mini-cta mini-shimmer">Book a Call →</div>
-            </div>
-            <div class="mini-cards">
-              <div class="mini-card"><div class="n" data-count="3.4" data-suffix="x">0x</div><div class="l">More leads</div></div>
-              <div class="mini-card"><div class="n" data-count="62" data-suffix="%">0%</div><div class="l">Conversion</div></div>
-              <div class="mini-card"><div class="n" data-count="0.9" data-suffix="s">0s</div><div class="l">Load time</div></div>
-            </div>
-          </div>
-        </div>
-        <div class="chip c1" data-parallax="0.14">
-          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M3 17l6-6 4 4 8-8"/><path d="M21 7v5h-5"/></svg></span>
-          <span><span class="big">+62%</span><span class="lab">conversion lift</span></span>
-        </div>
-        <div class="chip c2" data-parallax="0.18">
-          <span class="ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/></svg></span>
-          <span><span class="big">2 wks</span><span class="lab">from kickoff to live</span></span>
-        </div>
       </div>
     </div>
   </div>
@@ -820,91 +787,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   </div>
 </section>
 
-<!-- ========================= PORTFOLIO ========================= -->
-<section class="sec" id="work" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow">Selected Work</span>
-      <h2>Results that <em>speak for themselves</em></h2>
-      <p>A look at the kind of websites we build — and the kind of growth they're designed to deliver.</p>
-    </div>
-    <div class="port-grid">
-      <article class="port reveal">
-        <div class="port-shot">
-          <div class="ph ph-stripe"></div>
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:var(--accent);"></div></div>
-            <div class="fh" style="background:rgba(15,23,42,.22);margin-top:14px;"></div>
-            <div class="fh fh2" style="background:rgba(36,86,230,.55);"></div>
-            <div class="ftext" style="width:80%;"></div>
-            <div class="ftext" style="width:55%;"></div>
-            <div class="frow"><div class="fcard"></div><div class="fcard"></div><div class="fcard"></div></div>
-          </div>
-          <div class="badge">Example Project</div>
-        </div>
-        <div class="port-body">
-          <div class="cat">Local Roofing Co.</div>
-          <h3>Summit Peak Roofing</h3>
-          <p>A trade business with no online presence. We built a fast, trust-driven site with instant quote requests and clear service areas.</p>
-          <div class="port-results">
-            <div class="r"><div class="v" data-count="3.1" data-suffix="x">0x</div><div class="k">More quote requests</div></div>
-            <div class="r"><div class="v">#1</div><div class="k">Local search visibility</div></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="port reveal" data-d="1">
-        <div class="port-shot">
-          <div class="ph ph-stripe"></div>
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:#4ea1ff;"></div></div>
-            <div class="fh" style="background:rgba(15,23,42,.22);margin-top:14px;width:64%;"></div>
-            <div class="fh fh2" style="background:rgba(78,161,255,.55);width:42%;"></div>
-            <div class="ftext" style="width:78%;"></div>
-            <div class="ftext" style="width:50%;"></div>
-            <div class="frow"><div class="fcard"></div><div class="fcard"></div></div>
-          </div>
-          <div class="badge">Example Project</div>
-        </div>
-        <div class="port-body">
-          <div class="cat">Dental Practice</div>
-          <h3>Brightside Dental</h3>
-          <p>Online booking was clunky and chairs sat empty. We launched a calming, mobile-first site with one-tap appointment booking.</p>
-          <div class="port-results">
-            <div class="r"><div class="v" data-count="+58" data-suffix="%">0%</div><div class="k">New patient bookings</div></div>
-            <div class="r"><div class="v" data-count="42" data-suffix="%">0%</div><div class="k">Fewer no-shows</div></div>
-          </div>
-        </div>
-      </article>
-
-      <article class="port reveal" data-d="2">
-        <div class="port-shot">
-          <div class="ph ph-stripe"></div>
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:#3ecf8e;"></div></div>
-            <div class="fh" style="background:rgba(15,23,42,.22);margin-top:14px;width:70%;"></div>
-            <div class="fh fh2" style="background:rgba(62,207,142,.55);width:46%;"></div>
-            <div class="ftext" style="width:82%;"></div>
-            <div class="ftext" style="width:58%;"></div>
-            <div class="frow"><div class="fcard"></div><div class="fcard"></div><div class="fcard"></div></div>
-          </div>
-          <div class="badge">Example Project</div>
-        </div>
-        <div class="port-body">
-          <div class="cat">Travel Agency</div>
-          <h3>Wander &amp; Co. Travel</h3>
-          <p>Beautiful trips, forgettable website. We crafted an immersive, story-led site with rich packages and effortless enquiry flow.</p>
-          <div class="port-results">
-            <div class="r"><div class="v" data-count="2.7" data-suffix="x">0x</div><div class="k">Enquiry conversion</div></div>
-            <div class="r"><div class="v" data-count="+91" data-suffix="%">0%</div><div class="k">Avg. booking value</div></div>
-          </div>
-        </div>
-      </article>
-    </div>
-    <p class="port-disclaimer">// Illustrative example projects shown to demonstrate our design approach and the outcomes we build toward.</p>
-  </div>
-</section>
-
 <!-- ========================= WHY CHOOSE ========================= -->
 <section class="sec" id="why">
   <div class="container why-wrap">
@@ -1038,7 +920,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
         <div class="contact-info">
           <div class="cinfo">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg></span>
-            <div><div class="k">Email us</div><a class="v" href="/cdn-cgi/l/email-protection#b7ddd6cfd6dedad2d3ded686f7d0dad6dedb99d4d8da"><span class="__cf_email__" data-cfemail="bdd7dcc5dcd4d0d8d9d4dc8cfddad0dcd4d193ded2d0">[email&#160;protected]</span></a></div>
+            <div><div class="k">Email us</div><a class="v" href="mailto:Jaxaimedia1@gmail.com">Jaxaimedia1@gmail.com</a></div>
           </div>
           <div class="cinfo">
             <span class="ic"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2z"/></svg></span>
@@ -1077,14 +959,13 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
         <div class="foot-col">
           <h4>Company</h4>
           <a href="#services">Services</a>
-          <a href="#work">Our Work</a>
           <a href="#pricing">Pricing</a>
           <a href="#process">Process</a>
         </div>
         <div class="foot-col">
           <h4>Get Started</h4>
           <a href="#contact">Book a Call</a>
-          <a href="/cdn-cgi/l/email-protection#0d676c756c64606869646c3c4d6a606c6461236e6260">Email Us</a>
+          <a href="mailto:Jaxaimedia1@gmail.com">Email Us</a>
           <a href="tel:+18022301765">+1 802 230 1765</a>
         </div>
       </div>
@@ -1096,7 +977,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   </div>
 </footer>
 
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+<script>
 (function(){
   'use strict';
   var nav=document.getElementById('nav');
@@ -1238,7 +1119,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
     success.classList.add('show');
     /* open mail client as a real delivery path */
     setTimeout(function(){
-      window.location.href='mailto:jaxaimedia1@gmail.com?subject='+subject+'&body='+body;
+      window.location.href='mailto:Jaxaimedia1@gmail.com?subject='+subject+'&body='+body;
     },400);
   });
   /* clear error as user types */
