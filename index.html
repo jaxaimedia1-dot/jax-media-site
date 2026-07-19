@@ -310,6 +310,8 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .sol{display:flex;gap:14px;padding:20px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);transition:border-color .35s,transform .35s var(--ease);}
 .sol:hover{border-color:var(--border-2);transform:translateY(-3px);}
 .sol .chk{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(36,86,230,.12);display:grid;place-items:center;color:var(--accent);}
+.sol .chk svg path{stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .55s var(--ease) .2s;}
+.sol.reveal.in .chk svg path{stroke-dashoffset:0;}
 .sol h4{font-size:16px;font-weight:600;margin-bottom:4px;}
 .sol p{font-size:13.5px;color:var(--muted);line-height:1.5;}
 .sol-visual{position:relative;}
