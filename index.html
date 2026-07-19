@@ -309,8 +309,12 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .sol-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .sol{display:flex;gap:14px;padding:20px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);transition:border-color .35s,transform .35s var(--ease);}
 .sol:hover{border-color:var(--border-2);transform:translateY(-3px);}
-.sol .chk{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(36,86,230,.12);display:grid;place-items:center;color:var(--accent);}
-.sol .chk svg path{stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:24;stroke-dashoffset:24;transition:stroke-dashoffset .55s var(--ease) .2s;}
+.sol .chk{width:34px;height:34px;flex-shrink:0;display:grid;place-items:center;color:var(--accent);}
+.sol .chk svg{transform:rotate(-2.5deg);}
+.sol .chk .chk-box{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset .5s var(--ease);}
+.sol .chk .chk-mark{stroke-dasharray:34;stroke-dashoffset:34;transition:stroke-dashoffset .4s var(--ease) .38s;}
+.sol.chk-on .chk .chk-box{stroke-dashoffset:0;}
+.sol.chk-on .chk .chk-mark{stroke-dashoffset:0;}
 .sol.reveal.in .chk svg path{stroke-dashoffset:0;}
 .sol h4{font-size:16px;font-weight:600;margin-bottom:4px;}
 .sol p{font-size:13.5px;color:var(--muted);line-height:1.5;}
@@ -723,12 +727,12 @@ document.addEventListener('DOMContentLoaded', function(){
           <p>Every Jax Media website is engineered around one goal: turning more of your visitors into paying customers.</p>
         </div>
         <div class="sol-list">
-          <div class="sol reveal"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Professional branding</h4><p>Designs that build instant credibility.</p></div></div>
-          <div class="sol reveal" data-d="1"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Lead generation</h4><p>Built to capture and convert enquiries.</p></div></div>
-          <div class="sol reveal" data-d="2"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Mobile optimized</h4><p>Flawless on every screen size.</p></div></div>
-          <div class="sol reveal" data-d="3"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Lightning fast</h4><p>Speed that keeps visitors engaged.</p></div></div>
-          <div class="sol reveal"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>SEO-friendly</h4><p>Structured so customers can find you.</p></div></div>
-          <div class="sol reveal" data-d="1"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>AI-powered</h4><p>Smart chat &amp; automation that never sleeps.</p></div></div>
+          <div class="sol reveal"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Professional branding</h4><p>Designs that build instant credibility.</p></div></div>
+          <div class="sol reveal" data-d="1"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Lead generation</h4><p>Built to capture and convert enquiries.</p></div></div>
+          <div class="sol reveal" data-d="2"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Mobile optimized</h4><p>Flawless on every screen size.</p></div></div>
+          <div class="sol reveal" data-d="3"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Lightning fast</h4><p>Speed that keeps visitors engaged.</p></div></div>
+          <div class="sol reveal"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>SEO-friendly</h4><p>Structured so customers can find you.</p></div></div>
+          <div class="sol reveal" data-d="1"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>AI-powered</h4><p>Smart chat &amp; automation that never sleeps.</p></div></div>
         </div>
       </div>
       <div class="sol-visual reveal" data-d="2">
@@ -1014,6 +1018,15 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   revs.forEach(function(r){io.observe(r);});
+
+  /* solution checkmarks: replay the sketch draw every time each card scrolls in/out */
+  var solCards=document.querySelectorAll('.sol');
+  var chkIo=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      e.target.classList.toggle('chk-on', e.isIntersecting);
+    });
+  },{threshold:0.4});
+  solCards.forEach(function(s){chkIo.observe(s);});
 
   /* count-up numbers */
   function animateCount(el){
