@@ -304,7 +304,14 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .prob .pn{font-family:var(--font-mono);font-size:12px;color:var(--muted-2);letter-spacing:.1em;}
 .prob h3{font-size:20px;margin:16px 0 9px;font-weight:600;letter-spacing:-0.01em;font-family:var(--font-sans);}
 .prob p{color:var(--muted);font-size:15px;line-height:1.6;}
-.prob .x{position:absolute;top:26px;right:26px;width:30px;height:30px;border-radius:8px;background:rgba(36,86,230,.1);display:grid;place-items:center;color:var(--accent);}
+.prob .x{position:absolute;top:22px;right:22px;width:34px;height:34px;display:grid;place-items:center;color:var(--accent);}
+.prob .x svg{transform:rotate(-2.5deg);}
+.prob .x .x-box{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset .5s var(--ease);}
+.prob .x .x-mark-a{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease) .38s;}
+.prob .x .x-mark-b{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease) .52s;}
+.prob.x-on .x .x-box{stroke-dashoffset:0;}
+.prob.x-on .x .x-mark-a{stroke-dashoffset:0;}
+.prob.x-on .x .x-mark-b{stroke-dashoffset:0;}
 
 /* solution */
 .sol-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
@@ -690,32 +697,32 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
     <div class="prob-grid">
       <div class="prob reveal">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">01</div><h3>Outdated design</h3>
         <p>An old, cluttered site makes a great business look unprofessional — and visitors judge in seconds.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">02</div><h3>Low conversion rates</h3>
         <p>Traffic comes in, but no one books or buys. Without clear paths to action, visitors leave and don't return.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">03</div><h3>Poor mobile experience</h3>
         <p>Over half your visitors are on a phone. If it's slow or broken on mobile, you're losing them instantly.</p>
       </div>
       <div class="prob reveal">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">04</div><h3>Losing to competitors</h3>
         <p>When your rivals show up faster and look sharper, the customer clicks them — not you.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">05</div><h3>Lack of trust</h3>
         <p>No reviews, no proof, no credibility. Visitors hesitate — and hesitation kills sales.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
+        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
         <div class="pn">06</div><h3>No clear next step</h3>
         <p>Visitors don't know what to do next. A great site guides them straight to "book now."</p>
       </div>
@@ -1038,6 +1045,15 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   },{threshold:0.4});
   solCards.forEach(function(s){chkIo.observe(s);});
+
+  /* problem X marks: same replay-on-scroll sketch draw as the solution checkmarks */
+  var probCards=document.querySelectorAll('.prob');
+  var xIo=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      e.target.classList.toggle('x-on', e.isIntersecting);
+    });
+  },{threshold:0.4});
+  probCards.forEach(function(p){xIo.observe(p);});
 
   /* count-up numbers */
   function animateCount(el){
