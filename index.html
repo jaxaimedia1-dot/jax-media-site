@@ -18,7 +18,7 @@
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
    JAX MEDIA — DESIGN SYSTEM
@@ -39,6 +39,7 @@
   --accent-glow:rgba(36,86,230,0.45);
 
   --font-display:'Instrument Serif', Georgia, 'Times New Roman', serif;
+  --font-editorial:'Fraunces', Georgia, 'Times New Roman', serif;
   --font-sans:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono:'JetBrains Mono', ui-monospace, monospace;
 
@@ -180,7 +181,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:178px 0 110px;overflow:hidden;}
+.hero{padding:150px 0 90px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;perspective:1300px;transform-style:preserve-3d;}
 .hero-grid{
   position:absolute;inset:0;
@@ -194,8 +195,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .glow.a{width:620px;height:620px;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-220px;right:-120px;opacity:.2;}
 .glow.b{width:520px;height:520px;background:radial-gradient(circle,#5680f2 0%,transparent 65%);bottom:-260px;left:-160px;opacity:.14;}
 
-.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
-.hero-copy{max-width:600px;}
+.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:4px;}
 .hero-badge{
   display:inline-flex;align-items:center;gap:10px;
   padding:7px 14px 7px 9px;border-radius:999px;
@@ -204,14 +204,15 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 }
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.18);animation:pulse 2.4s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.18);}50%{box-shadow:0 0 0 6px rgba(74,222,128,.06);}}
-.hero h1{
-  font-family:var(--font-sans);font-weight:800;
-  font-size:clamp(64px,9vw,128px);line-height:1.02;letter-spacing:-0.03em;
-}
-.hero h1 em{font-style:normal;color:var(--accent);display:inline-block;padding-bottom:.12em;}
-.hero .sub{font-size:20px;color:var(--muted);margin-top:58px;max-width:520px;line-height:1.55;}
-.hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
-.hero-trust{display:flex;align-items:center;gap:22px;margin-top:40px;flex-wrap:wrap;color:var(--muted-2);font-size:13.5px;}
+.hero-arch-wrap{width:100%;max-width:900px;margin:0 auto;}
+.hero-arch{width:100%;height:auto;display:block;overflow:visible;}
+.hero-arch text{font-family:var(--font-editorial);fill:var(--text);}
+.hero-arch .arch-l1{font-size:68px;font-weight:500;letter-spacing:-0.005em;}
+.hero-arch .arch-l2{font-size:92px;font-weight:600;}
+.hero-arch .accent{fill:var(--accent);font-style:italic;font-weight:600;}
+.hero .sub{font-size:20px;color:var(--muted);margin-top:8px;max-width:520px;line-height:1.55;margin-left:auto;margin-right:auto;}
+.hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;justify-content:center;}
+.hero-trust{display:flex;align-items:center;gap:22px;margin-top:40px;flex-wrap:wrap;justify-content:center;color:var(--muted-2);font-size:13.5px;}
 .hero-trust .stars{color:var(--accent);letter-spacing:2px;font-size:15px;}
 .hero-trust .div{width:1px;height:18px;background:var(--border-2);}
 
@@ -269,7 +270,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 @keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
 
 /* hero visual: continuously-spinning 3D J (replaces old browser mockup) */
-.hero-j3d-stage{position:relative;min-height:480px;display:grid;place-items:center;perspective:1400px;}
+.hero-j3d-stage{position:relative;min-height:400px;margin-top:-40px;display:grid;place-items:center;perspective:1400px;}
 .hero-j3d-stage::before{content:"";position:absolute;inset:8%;background:radial-gradient(closest-side,var(--accent-glow),transparent 72%);filter:blur(10px);pointer-events:none;}
 .hero-j3d-stage .j3d{position:relative;width:380px;height:380px;animation:heroJSpin 9s linear infinite;}
 @keyframes heroJSpin{from{transform:rotateX(14deg) rotateY(0deg);}to{transform:rotateX(14deg) rotateY(360deg);}}
@@ -487,8 +488,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
    RESPONSIVE
    ============================================================ */
 @media(max-width:1080px){
-  .hero-inner{grid-template-columns:1fr;gap:70px;}
-  .hero-visual{max-width:560px;}
   .sol-wrap{grid-template-columns:1fr;gap:44px;}
   .why-wrap{grid-template-columns:1fr;gap:36px;}
   .svc-grid,.prob-grid,.port-grid{grid-template-columns:repeat(2,1fr);}
@@ -521,11 +520,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .hero-actions .btn{flex:1;}
 }
 @media(max-width:600px){
-  /* direct-edit drag-resizes on the hero heading/sub were pinned to desktop pixel
-     boxes — let them reflow fluidly on phones instead of overflowing/clipping */
-  .hero-copy h1{width:auto!important;height:auto!important;}
-  .hero-copy h1 em{width:auto!important;height:auto!important;}
-  .hero-copy .sub{width:auto!important;height:auto!important;}
   .hero-j3d-stage{min-height:320px;}
   .hero-j3d-stage .j3d{width:240px;height:240px;}
 }
@@ -635,26 +629,30 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="glow b" data-parallax="0.1"></div>
   </div>
   <div class="container hero-inner">
-    <div class="hero-copy">
-      <h1>Turn More Visitors Into <em>Customers</em></h1>
-      <p class="sub" style="width: 547px; height: 121px">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
-      <div class="hero-actions">
-        <a href="#contact" class="btn btn-primary">Book a Free Consultation <span class="arr">→</span></a>
-      </div>
-      <div class="hero-trust">
-        <span class="stars">★★★★★</span>
-        <span>Trusted by growing local &amp; service businesses</span>
-        <span class="div"></span>
-        <span>48-hour project kickoff</span>
-      </div>
-    </div>
+    <h1 class="hero-arch-wrap">
+      <svg class="hero-arch" viewBox="0 0 1100 340" aria-label="Turn More Visitors Into Customers">
+        <defs>
+          <path id="archLine1" d="M120,190 A979.7,979.7 0 0 1 980,190" fill="none" />
+          <path id="archLine2" d="M170,290 A960.7,960.7 0 0 1 930,290" fill="none" />
+        </defs>
+        <text class="arch-l1"><textPath href="#archLine1" startOffset="50%" text-anchor="middle">Turn More Visitors</textPath></text>
+        <text class="arch-l2"><textPath href="#archLine2" startOffset="50%" text-anchor="middle">Into <tspan class="accent">Customers</tspan></textPath></text>
+      </svg>
+    </h1>
 
     <div class="hero-j3d-stage">
       <div class="j3d" id="heroJ3d"></div>
     </div>
-    <div class="hero-visual">
-      <div class="mock-wrap" id="mockWrap">
-      </div>
+
+    <p class="sub">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
+    <div class="hero-actions">
+      <a href="#contact" class="btn btn-primary">Book a Free Consultation <span class="arr">→</span></a>
+    </div>
+    <div class="hero-trust">
+      <span class="stars">★★★★★</span>
+      <span>Trusted by growing local &amp; service businesses</span>
+      <span class="div"></span>
+      <span>48-hour project kickoff</span>
     </div>
   </div>
 </header>
