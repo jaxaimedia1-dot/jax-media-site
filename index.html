@@ -116,11 +116,12 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   white-space:nowrap;
 }
 .btn-primary{
-  background:linear-gradient(180deg,var(--accent-soft),var(--accent));
-  color:#ffffff;
-  box-shadow:0 8px 30px -8px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.35);
+  background:#ffffff;
+  color:var(--accent);
+  border:1px solid var(--border-2);
+  box-shadow:0 8px 26px -10px rgba(15,23,42,.2),inset 0 1px 0 rgba(255,255,255,.8);
 }
-.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 44px -10px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.35);}
+.btn-primary:hover{transform:translateY(-3px);background:#fbfbfe;box-shadow:0 16px 40px -12px rgba(15,23,42,.26),inset 0 1px 0 rgba(255,255,255,.8);}
 .btn-ghost{
   background:rgba(15,23,42,.03);
   border:1px solid var(--border-2);
@@ -481,6 +482,8 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 .foot-col a{display:block;color:var(--muted);font-size:15px;padding:7px 0;transition:color .25s;}
 .foot-col a:hover{color:var(--accent);}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid var(--border);color:var(--muted-2);font-size:13.5px;flex-wrap:wrap;gap:14px;}
+.foot-social{display:inline-flex;align-items:center;gap:6px;color:var(--muted-2);font-size:13.5px;transition:color .25s;}
+.foot-social:hover{color:var(--accent);}
 
 /* reveal animation */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
@@ -988,6 +991,10 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Jax Media. All rights reserved.</span>
       <span>Websites Built to Grow Your Business</span>
+      <a class="foot-social" href="https://instagram.com/jaxai.media" target="_blank" rel="noopener noreferrer" aria-label="Jax Media on Instagram">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        @jaxai.media
+      </a>
     </div>
   </div>
 </footer>
