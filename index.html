@@ -116,12 +116,11 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   white-space:nowrap;
 }
 .btn-primary{
-  background:#ffffff;
-  color:var(--accent);
-  border:1px solid var(--border-2);
-  box-shadow:0 8px 26px -10px rgba(15,23,42,.2),inset 0 1px 0 rgba(255,255,255,.8);
+  background:linear-gradient(180deg,var(--accent-soft),var(--accent));
+  color:#ffffff;
+  box-shadow:0 8px 30px -8px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.35);
 }
-.btn-primary:hover{transform:translateY(-3px);background:#fbfbfe;box-shadow:0 16px 40px -12px rgba(15,23,42,.26),inset 0 1px 0 rgba(255,255,255,.8);}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 16px 44px -10px var(--accent-glow),inset 0 1px 0 rgba(255,255,255,.35);}
 .btn-ghost{
   background:rgba(15,23,42,.03);
   border:1px solid var(--border-2);
