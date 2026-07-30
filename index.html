@@ -104,8 +104,38 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   letter-spacing:-0.005em;
 }
 .section-head h2 em{font-style:italic;font-weight:600;color:var(--accent);}
-#problem .section-head{max-width:760px;}
-#problem .section-head h2{font-size:clamp(48px,7vw,84px);font-weight:600;line-height:0.98;}
+/* problem hero: bold two-column layout w/ abstract blob, inspired by client reference */
+.prob-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:80px;}
+.prob-hero-copy .eyebrow.pill{margin-bottom:24px;}
+.prob-h2{
+  font-family:var(--font-sans);font-weight:800;text-transform:uppercase;
+  letter-spacing:-0.02em;font-size:clamp(42px,5.4vw,72px);line-height:0.96;color:var(--text);
+}
+.prob-h2 em{font-style:normal;color:var(--accent);}
+.prob-hero-copy p{margin-top:26px;font-size:18px;line-height:1.6;color:var(--muted);max-width:440px;}
+
+.prob-hero-visual{position:relative;height:420px;display:grid;place-items:center;}
+.prob-blob{
+  width:300px;height:300px;
+  background:radial-gradient(circle at 32% 28%,var(--accent-soft),var(--accent) 55%,var(--accent-deep) 100%);
+  border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;
+  box-shadow:0 50px 110px -20px var(--accent-glow),inset -22px -22px 60px rgba(0,0,0,.28),inset 18px 18px 44px rgba(255,255,255,.35);
+  animation:probBlobMorph 9s ease-in-out infinite,probBlobSpin 16s linear infinite;
+}
+@keyframes probBlobMorph{
+  0%,100%{border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;}
+  33%{border-radius:63% 37% 41% 59% / 55% 40% 60% 45%;}
+  66%{border-radius:37% 63% 55% 45% / 59% 62% 38% 41%;}
+}
+@keyframes probBlobSpin{from{transform:rotate(0deg);}to{transform:rotate(360deg);}}
+.prob-globe{position:absolute;top:6px;right:10px;width:64px;height:64px;color:var(--border-2);opacity:.8;}
+.prob-index{position:absolute;right:2px;bottom:4px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12.5px;color:var(--muted-2);letter-spacing:.05em;}
+.prob-index i{width:1px;height:30px;background:var(--border-2);font-style:normal;}
+@media(max-width:900px){
+  .prob-hero{grid-template-columns:1fr;gap:40px;}
+  .prob-hero-visual{height:280px;order:-1;}
+  .prob-blob{width:220px;height:220px;}
+}
 .section-head p{color:var(--muted);font-size:19px;margin-top:20px;max-width:560px;}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
 .section-head.center p{margin-left:auto;margin-right:auto;}
@@ -694,10 +724,23 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- ========================= PROBLEM ========================= -->
 <section class="sec" id="problem">
   <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow pill">The Problem</span>
-      <h2>Your website might be <em>quietly costing you</em> customers</h2>
-      <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
+    <div class="prob-hero reveal">
+      <div class="prob-hero-copy">
+        <span class="eyebrow pill">The Problem</span>
+        <h2 class="prob-h2">Your website might be <em>quietly costing you</em> customers</h2>
+        <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
+      </div>
+      <div class="prob-hero-visual">
+        <div class="prob-blob"></div>
+        <svg class="prob-globe" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1">
+          <circle cx="30" cy="30" r="28"/>
+          <ellipse cx="30" cy="30" rx="12" ry="28"/>
+          <line x1="2" y1="30" x2="58" y2="30"/>
+          <path d="M6,18 Q30,30 54,18"/>
+          <path d="M6,42 Q30,30 54,42"/>
+        </svg>
+        <div class="prob-index"><span>01</span><i></i><span>06</span></div>
+      </div>
     </div>
     <div class="prob-grid">
       <div class="prob reveal">
