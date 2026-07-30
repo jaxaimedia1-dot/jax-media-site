@@ -401,7 +401,15 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-shot .ph{position:absolute;inset:0;}
 .ph-stripe{background:repeating-linear-gradient(135deg,#e7eaef,#e7eaef 11px,#dde1e8 11px,#dde1e8 22px);}
 .port-shot .ph-label{position:absolute;left:0;right:0;bottom:0;padding:12px 16px;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.08em;display:flex;align-items:center;gap:7px;}
-.port-shot .badge{position:absolute;top:14px;left:14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
+.port-shot .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
+/* bold graphic project-card visuals */
+.pv-dark{background:linear-gradient(155deg,var(--accent-deep),#050912 78%);}
+.pv-mark{position:absolute;right:-18px;bottom:-46px;font-family:var(--font-editorial);font-style:italic;font-weight:700;font-size:200px;line-height:1;color:rgba(255,255,255,.08);}
+.pv-bright{background:linear-gradient(155deg,var(--accent-soft),var(--accent));display:flex;align-items:flex-end;padding:24px;}
+.pv-light{background:linear-gradient(155deg,#eef2fe,#dbe3fb);display:flex;align-items:flex-end;padding:24px;overflow:hidden;}
+.pv-blob{position:absolute;width:160px;height:160px;top:-40px;right:-40px;border-radius:42% 58% 63% 37% / 41% 44% 56% 59%;background:radial-gradient(circle at 30% 30%,var(--accent-soft),var(--accent));opacity:.9;animation:probBlobMorph 9s ease-in-out infinite;}
+.pv-text{font-family:var(--font-editorial);font-style:italic;font-weight:600;font-size:32px;line-height:1.05;color:#ffffff;position:relative;z-index:1;}
+.pv-text-dark{font-family:var(--font-sans);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;font-size:28px;color:var(--text);}
 /* tiny rendered site inside shot */
 .fake-site{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;gap:9px;}
 .fake-site .fnav{display:flex;justify-content:space-between;align-items:center;}
@@ -870,16 +878,9 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
     <div class="port-grid">
       <div class="port reveal">
-        <div class="port-shot">
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:var(--accent)"></div></div>
-            <div class="fh"></div>
-            <div class="fh fh2"></div>
-            <div class="ftext" style="width:82%"></div>
-            <div class="ftext" style="width:58%"></div>
-            <div class="frow"><div class="fcard"></div><div class="fcard"></div><div class="fcard"></div></div>
-          </div>
+        <div class="port-shot pv-dark">
           <span class="badge">Concept</span>
+          <div class="pv-mark">J</div>
         </div>
         <div class="port-body">
           <span class="cat">Web Design / Branding</span>
@@ -888,15 +889,9 @@ document.addEventListener('DOMContentLoaded', function(){
         </div>
       </div>
       <div class="port reveal" data-d="1">
-        <div class="port-shot">
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:var(--accent)"></div></div>
-            <div class="fh" style="width:60%"></div>
-            <div class="ftext" style="width:70%"></div>
-            <div class="ftext" style="width:45%"></div>
-            <div class="frow"><div class="fcard" style="flex:1.6"></div><div class="fcard"></div></div>
-          </div>
+        <div class="port-shot pv-bright">
           <span class="badge">Concept</span>
+          <div class="pv-text">Built to<br>Convert.</div>
         </div>
         <div class="port-body">
           <span class="cat">Landing Page / UI</span>
@@ -905,15 +900,10 @@ document.addEventListener('DOMContentLoaded', function(){
         </div>
       </div>
       <div class="port reveal" data-d="2">
-        <div class="port-shot">
-          <div class="fake-site">
-            <div class="fnav"><div class="fdot"></div><div class="fbtn" style="background:var(--accent)"></div></div>
-            <div class="fh"></div>
-            <div class="ftext" style="width:75%"></div>
-            <div class="ftext" style="width:50%"></div>
-            <div class="frow"><div class="fcard"></div><div class="fcard"></div></div>
-          </div>
+        <div class="port-shot pv-light">
           <span class="badge">Concept</span>
+          <div class="pv-blob"></div>
+          <div class="pv-text pv-text-dark">Book<br>More.</div>
         </div>
         <div class="port-body">
           <span class="cat">Product / UI Design</span>
