@@ -90,6 +90,8 @@ section{position:relative;}
 }
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.6;}
 .eyebrow.center::before{display:none;}
+.eyebrow.pill{background:rgba(36,86,230,.1);padding:7px 16px;border-radius:999px;}
+.eyebrow.pill::before{display:none;}
 
 h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .display{font-family:var(--font-display);font-weight:400;letter-spacing:0;}
@@ -102,6 +104,8 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   letter-spacing:-0.005em;
 }
 .section-head h2 em{font-style:italic;font-weight:600;color:var(--accent);}
+#problem .section-head{max-width:760px;}
+#problem .section-head h2{font-size:clamp(48px,7vw,84px);font-weight:600;line-height:0.98;}
 .section-head p{color:var(--muted);font-size:19px;margin-top:20px;max-width:560px;}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
 .section-head.center p{margin-left:auto;margin-right:auto;}
@@ -691,7 +695,7 @@ document.addEventListener('DOMContentLoaded', function(){
 <section class="sec" id="problem">
   <div class="container">
     <div class="section-head reveal">
-      <span class="eyebrow">The Problem</span>
+      <span class="eyebrow pill">The Problem</span>
       <h2>Your website might be <em>quietly costing you</em> customers</h2>
       <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
     </div>
