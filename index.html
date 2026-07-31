@@ -6,19 +6,12 @@
 <title>Jax Media — Websites Built to Grow Your Business</title>
 <meta name="description" content="Jax Media builds modern, high-converting websites that help local and service businesses generate more leads, increase bookings, and grow revenue. Book a free consultation." />
 <meta name="theme-color" content="#0a0908" />
-<link rel="icon" href="/favicon.ico" sizes="any" />
-<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png" />
-<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png" />
-<link rel="icon" type="image/png" sizes="48x48" href="/assets/favicon-48x48.png" />
-<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png" />
-<link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192.png" />
-<link rel="icon" type="image/png" sizes="512x512" href="/assets/icon-512.png" />
 <meta property="og:title" content="Jax Media — Websites Built to Grow Your Business" />
 <meta property="og:description" content="Modern, high-converting websites designed to turn more visitors into customers. Book a free consultation." />
 <meta property="og:type" content="website" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Fraunces:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
 <style>
 /* ============================================================
    JAX MEDIA — DESIGN SYSTEM
@@ -39,7 +32,6 @@
   --accent-glow:rgba(36,86,230,0.45);
 
   --font-display:'Instrument Serif', Georgia, 'Times New Roman', serif;
-  --font-editorial:'Fraunces', Georgia, 'Times New Roman', serif;
   --font-sans:'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
   --font-mono:'JetBrains Mono', ui-monospace, monospace;
 
@@ -52,7 +44,7 @@
 }
 
 *{box-sizing:border-box;margin:0;padding:0;}
-html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;overflow-x:hidden;overflow-x:clip;max-width:100%;touch-action:pan-y;}
+html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
 body{
   background:var(--bg);
   color:var(--text);
@@ -62,8 +54,6 @@ body{
   -webkit-font-smoothing:antialiased;
   text-rendering:optimizeLegibility;
   overflow-x:hidden;
-  overflow-x:clip;
-  touch-action:pan-y;
 }
 ::selection{background:var(--accent);color:#fff;}
 a{color:inherit;text-decoration:none;}
@@ -90,8 +80,6 @@ section{position:relative;}
 }
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.6;}
 .eyebrow.center::before{display:none;}
-.eyebrow.pill{background:rgba(36,86,230,.1);padding:7px 16px;border-radius:999px;}
-.eyebrow.pill::before{display:none;}
 
 h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .display{font-family:var(--font-display);font-weight:400;letter-spacing:0;}
@@ -99,70 +87,11 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 
 .section-head{max-width:680px;margin-bottom:60px;}
 .section-head h2{
-  font-family:var(--font-editorial);font-weight:500;
+  font-family:var(--font-display);font-weight:400;
   font-size:clamp(38px,5vw,62px);line-height:1.02;margin-top:22px;
   letter-spacing:-0.005em;
 }
-.section-head h2 em{font-style:italic;font-weight:600;color:var(--accent);}
-/* problem hero: bold two-column layout w/ abstract blob, inspired by client reference */
-.prob-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:80px;}
-.prob-hero-copy .eyebrow.pill{margin-bottom:24px;}
-.prob-h2{
-  font-family:var(--font-sans);font-weight:800;text-transform:uppercase;
-  letter-spacing:-0.02em;font-size:clamp(42px,5.4vw,72px);line-height:0.96;color:var(--text);
-}
-.prob-h2 em{font-style:normal;color:var(--accent);}
-.prob-hero-copy p{margin-top:26px;font-size:18px;line-height:1.6;color:var(--muted);max-width:440px;}
-
-.prob-hero-visual{position:relative;height:500px;display:grid;place-items:center;}
-.prob-blob-wrap{position:relative;width:420px;height:420px;perspective:1000px;display:grid;place-items:center;}
-.prob-blob-svg{
-  position:relative;width:400px;height:400px;overflow:visible;
-  transform-style:preserve-3d;filter:drop-shadow(0 50px 90px var(--accent-glow));
-  animation:probBlob3D 12s ease-in-out infinite;
-}
-.prob-blob-path{animation:probBlobPath 13s ease-in-out infinite;}
-.prob-blob-shine{
-  position:absolute;width:120px;height:92px;top:14%;left:16%;
-  background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%);
-  border-radius:50%;filter:blur(3px);mix-blend-mode:screen;pointer-events:none;
-  animation:probShineMove 12s ease-in-out infinite;
-}
-.prob-blob-shadow{
-  position:absolute;bottom:2px;left:50%;width:60%;height:34px;
-  background:radial-gradient(ellipse,rgba(8,12,32,.4),transparent 72%);
-  transform:translateX(-50%);filter:blur(9px);
-  animation:probShadowPulse 12s ease-in-out infinite;
-}
-@keyframes probBlobPath{
-  0%,100%{d:path("M331.9,138.1 Q340.0,200.0 330.8,260.8 Q321.6,321.6 260.8,313.3 Q200.0,305.0 137.1,315.4 Q74.1,325.9 76.1,262.9 Q78.0,200.0 80.7,141.7 Q83.3,83.3 141.7,92.7 Q200.0,102.0 261.9,89.1 Q323.7,76.3 331.9,138.1 Z");}
-  33%{d:path("M329.9,157.6 Q375.0,200.0 327.1,239.6 Q279.2,279.2 239.6,322.1 Q200.0,365.0 154.7,327.8 Q109.5,290.5 65.7,245.3 Q22.0,200.0 75.6,164.6 Q129.3,129.3 164.6,87.1 Q200.0,45.0 242.4,80.1 Q284.9,115.1 329.9,157.6 Z");}
-  66%{d:path("M294.2,161.8 Q312.0,200.0 314.3,258.3 Q316.7,316.7 258.3,327.3 Q200.0,338.0 163.9,305.1 Q127.9,272.1 77.9,236.1 Q28.0,200.0 67.3,153.3 Q106.7,106.7 153.3,64.3 Q200.0,22.0 238.2,72.8 Q276.4,123.6 294.2,161.8 Z");}
-}
-@keyframes probBlob3D{
-  0%,100%{transform:rotateX(10deg) rotateY(0deg) rotateZ(0deg) scale(1);}
-  25%{transform:rotateX(-8deg) rotateY(16deg) rotateZ(4deg) scale(1.04);}
-  50%{transform:rotateX(13deg) rotateY(-14deg) rotateZ(-3deg) scale(.96);}
-  75%{transform:rotateX(-10deg) rotateY(8deg) rotateZ(3deg) scale(1.02);}
-}
-@keyframes probShineMove{
-  0%,100%{transform:translate(0,0) scale(1);opacity:.85;}
-  30%{transform:translate(70px,34px) scale(.75);opacity:.5;}
-  60%{transform:translate(-24px,56px) scale(1.15);opacity:.75;}
-}
-@keyframes probShadowPulse{
-  0%,100%{transform:translateX(-50%) scale(1);opacity:.5;}
-  50%{transform:translateX(-50%) scale(.86);opacity:.32;}
-}
-.prob-globe{position:absolute;top:6px;right:10px;width:64px;height:64px;color:var(--border-2);opacity:.8;}
-.prob-index{position:absolute;right:2px;bottom:4px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12.5px;color:var(--muted-2);letter-spacing:.05em;}
-.prob-index i{width:1px;height:30px;background:var(--border-2);font-style:normal;}
-@media(max-width:900px){
-  .prob-hero{grid-template-columns:1fr;gap:40px;}
-  .prob-hero-visual{height:320px;order:-1;}
-  .prob-blob-wrap{width:280px;height:280px;}
-  .prob-blob-svg{width:260px;height:260px;}
-}
+.section-head h2 em{font-style:italic;color:var(--accent);}
 .section-head p{color:var(--muted);font-size:19px;margin-top:20px;max-width:560px;}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
 .section-head.center p{margin-left:auto;margin-right:auto;}
@@ -239,12 +168,12 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .mobile-menu.open{transform:translateY(0);opacity:1;pointer-events:auto;}
 .mobile-menu a{display:block;padding:16px 0;font-size:20px;border-bottom:1px solid var(--border);color:var(--muted);}
 .mobile-menu a:last-of-type{border:none;}
-.mobile-menu .btn{display:flex;width:100%;margin-top:18px;padding:15px 26px;border-bottom:none;color:#ffffff;text-align:center;}
+.mobile-menu .btn{width:100%;margin-top:18px;}
 
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:150px 0 90px;overflow:hidden;}
+.hero{padding:178px 0 110px;overflow:hidden;}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;perspective:1300px;transform-style:preserve-3d;}
 .hero-grid{
   position:absolute;inset:0;
@@ -258,7 +187,8 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .glow.a{width:620px;height:620px;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-220px;right:-120px;opacity:.2;}
 .glow.b{width:520px;height:520px;background:radial-gradient(circle,#5680f2 0%,transparent 65%);bottom:-260px;left:-160px;opacity:.14;}
 
-.hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:4px;}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1.05fr .95fr;gap:64px;align-items:center;}
+.hero-copy{max-width:600px;}
 .hero-badge{
   display:inline-flex;align-items:center;gap:10px;
   padding:7px 14px 7px 9px;border-radius:999px;
@@ -267,15 +197,14 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 }
 .hero-badge .dot{width:8px;height:8px;border-radius:50%;background:#4ade80;box-shadow:0 0 0 3px rgba(74,222,128,.18);animation:pulse 2.4s infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 3px rgba(74,222,128,.18);}50%{box-shadow:0 0 0 6px rgba(74,222,128,.06);}}
-.hero-arch-wrap{width:100%;max-width:900px;margin:0 auto;}
-.hero-arch{width:100%;height:auto;display:block;overflow:visible;}
-.hero-arch text{font-family:var(--font-editorial);fill:var(--text);}
-.hero-arch .arch-l1{font-size:68px;font-weight:500;letter-spacing:-0.005em;}
-.hero-arch .arch-l2{font-size:92px;font-weight:600;}
-.hero-arch .accent{fill:var(--accent);font-style:italic;font-weight:600;}
-.hero .sub{font-size:20px;color:var(--muted);margin-top:8px;max-width:520px;line-height:1.55;margin-left:auto;margin-right:auto;}
-.hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;justify-content:center;}
-.hero-trust{display:flex;align-items:center;gap:22px;margin-top:40px;flex-wrap:wrap;justify-content:center;color:var(--muted-2);font-size:13.5px;}
+.hero h1{
+  font-family:var(--font-display);font-weight:400;
+  font-size:clamp(46px,6.2vw,78px);line-height:1.1;letter-spacing:-0.01em;
+}
+.hero h1 em{font-style:italic;color:var(--accent);display:inline-block;padding-bottom:.12em;}
+.hero .sub{font-size:20px;color:var(--muted);margin-top:58px;max-width:520px;line-height:1.55;}
+.hero-actions{display:flex;gap:14px;margin-top:38px;flex-wrap:wrap;}
+.hero-trust{display:flex;align-items:center;gap:22px;margin-top:40px;flex-wrap:wrap;color:var(--muted-2);font-size:13.5px;}
 .hero-trust .stars{color:var(--accent);letter-spacing:2px;font-size:15px;}
 .hero-trust .div{width:1px;height:18px;background:var(--border-2);}
 
@@ -333,7 +262,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 @keyframes float2{0%,100%{transform:translateY(0);}50%{transform:translateY(12px);}}
 
 /* hero visual: continuously-spinning 3D J (replaces old browser mockup) */
-.hero-j3d-stage{position:relative;min-height:400px;margin-top:-40px;display:grid;place-items:center;perspective:1400px;}
+.hero-j3d-stage{position:relative;min-height:480px;display:grid;place-items:center;perspective:1400px;}
 .hero-j3d-stage::before{content:"";position:absolute;inset:8%;background:radial-gradient(closest-side,var(--accent-glow),transparent 72%);filter:blur(10px);pointer-events:none;}
 .hero-j3d-stage .j3d{position:relative;width:380px;height:380px;animation:heroJSpin 9s linear infinite;}
 @keyframes heroJSpin{from{transform:rotateX(14deg) rotateY(0deg);}to{transform:rotateX(14deg) rotateY(360deg);}}
@@ -365,27 +294,14 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .prob .pn{font-family:var(--font-mono);font-size:12px;color:var(--muted-2);letter-spacing:.1em;}
 .prob h3{font-size:20px;margin:16px 0 9px;font-weight:600;letter-spacing:-0.01em;font-family:var(--font-sans);}
 .prob p{color:var(--muted);font-size:15px;line-height:1.6;}
-.prob .x{position:absolute;top:22px;right:22px;width:34px;height:34px;display:grid;place-items:center;color:var(--accent);}
-.prob .x svg{transform:rotate(-2.5deg);}
-.prob .x .x-box{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset .5s var(--ease);}
-.prob .x .x-mark-a{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease) .38s;}
-.prob .x .x-mark-b{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease) .52s;}
-.prob.x-on .x .x-box{stroke-dashoffset:0;}
-.prob.x-on .x .x-mark-a{stroke-dashoffset:0;}
-.prob.x-on .x .x-mark-b{stroke-dashoffset:0;}
+.prob .x{position:absolute;top:26px;right:26px;width:30px;height:30px;border-radius:8px;background:rgba(36,86,230,.1);display:grid;place-items:center;color:var(--accent);}
 
 /* solution */
 .sol-wrap{display:grid;grid-template-columns:.9fr 1.1fr;gap:60px;align-items:center;}
 .sol-list{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
 .sol{display:flex;gap:14px;padding:20px;border-radius:var(--radius-sm);background:var(--surface);border:1px solid var(--border);transition:border-color .35s,transform .35s var(--ease);}
 .sol:hover{border-color:var(--border-2);transform:translateY(-3px);}
-.sol .chk{width:34px;height:34px;flex-shrink:0;display:grid;place-items:center;color:var(--accent);}
-.sol .chk svg{transform:rotate(-2.5deg);}
-.sol .chk .chk-box{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset .5s var(--ease);}
-.sol .chk .chk-mark{stroke-dasharray:34;stroke-dashoffset:34;transition:stroke-dashoffset .4s var(--ease) .38s;}
-.sol.chk-on .chk .chk-box{stroke-dashoffset:0;}
-.sol.chk-on .chk .chk-mark{stroke-dashoffset:0;}
-.sol.reveal.in .chk svg path{stroke-dashoffset:0;}
+.sol .chk{width:34px;height:34px;border-radius:9px;flex-shrink:0;background:rgba(36,86,230,.12);display:grid;place-items:center;color:var(--accent);}
 .sol h4{font-size:16px;font-weight:600;margin-bottom:4px;}
 .sol p{font-size:13.5px;color:var(--muted);line-height:1.5;}
 .sol-visual{position:relative;}
@@ -424,37 +340,11 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .port{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s var(--ease),border-color .45s;}
 .port:hover{transform:translateY(-7px);border-color:var(--border-2);}
-
-/* work carousel: slide deck of project cards */
-.work-carousel{position:relative;}
-.work-track{
-  display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;
-  scroll-behavior:smooth;padding:6px 6px 14px;margin:-6px -6px 0;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-}
-.work-track::-webkit-scrollbar{display:none;}
-.work-slide{flex:0 0 auto;width:min(560px,78vw);scroll-snap-align:center;}
-.work-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:36px;}
-.work-arrow{
-  width:46px;height:46px;border-radius:50%;border:1px solid var(--border-2);
-  background:var(--surface);display:grid;place-items:center;color:var(--text);
-  transition:transform .3s var(--ease),background .3s,border-color .3s,color .3s;cursor:pointer;
-}
-.work-arrow:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px);}
-.work-count{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--muted-2);min-width:64px;text-align:center;}
 .port-shot{height:210px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
 .port-shot .ph{position:absolute;inset:0;}
 .ph-stripe{background:repeating-linear-gradient(135deg,#e7eaef,#e7eaef 11px,#dde1e8 11px,#dde1e8 22px);}
 .port-shot .ph-label{position:absolute;left:0;right:0;bottom:0;padding:12px 16px;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.08em;display:flex;align-items:center;gap:7px;}
-.port-shot .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
-/* bold graphic project-card visuals */
-.pv-dark{background:linear-gradient(155deg,var(--accent-deep),#050912 78%);}
-.pv-mark{position:absolute;right:-18px;bottom:-46px;font-family:var(--font-editorial);font-style:italic;font-weight:700;font-size:200px;line-height:1;color:rgba(255,255,255,.08);}
-.pv-bright{background:linear-gradient(155deg,var(--accent-soft),var(--accent));display:flex;align-items:flex-end;padding:24px;}
-.pv-light{background:linear-gradient(155deg,#eef2fe,#dbe3fb);display:flex;align-items:flex-end;padding:24px;overflow:hidden;}
-.pv-blob{position:absolute;width:160px;height:160px;top:-40px;right:-40px;border-radius:31% 69% 73% 27% / 48% 36% 64% 52%;background:radial-gradient(circle at 30% 30%,var(--accent-soft),var(--accent));opacity:.9;animation:probBlobMorph 9s ease-in-out infinite;}
-.pv-text{font-family:var(--font-editorial);font-style:italic;font-weight:600;font-size:32px;line-height:1.05;color:#ffffff;position:relative;z-index:1;}
-.pv-text-dark{font-family:var(--font-sans);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;font-size:28px;color:var(--text);}
+.port-shot .badge{position:absolute;top:14px;left:14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
 /* tiny rendered site inside shot */
 .fake-site{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;gap:9px;}
 .fake-site .fnav{display:flex;justify-content:space-between;align-items:center;}
@@ -538,8 +428,8 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 }
 .contact-card .cglow{position:absolute;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);opacity:.14;top:-200px;right:-120px;filter:blur(60px);}
 .contact-left{position:relative;z-index:1;}
-.contact-left h2{font-family:var(--font-editorial);font-weight:500;font-size:clamp(38px,4.5vw,56px);line-height:1.02;}
-.contact-left h2 em{font-style:italic;font-weight:600;color:var(--accent);}
+.contact-left h2{font-family:var(--font-display);font-weight:400;font-size:clamp(38px,4.5vw,56px);line-height:1.02;}
+.contact-left h2 em{font-style:italic;color:var(--accent);}
 .contact-left p{color:var(--muted);font-size:17px;margin-top:20px;max-width:380px;}
 .contact-info{margin-top:38px;display:flex;flex-direction:column;gap:18px;}
 .cinfo{display:flex;align-items:center;gap:15px;}
@@ -575,8 +465,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 .foot-col a{display:block;color:var(--muted);font-size:15px;padding:7px 0;transition:color .25s;}
 .foot-col a:hover{color:var(--accent);}
 .foot-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:30px;border-top:1px solid var(--border);color:var(--muted-2);font-size:13.5px;flex-wrap:wrap;gap:14px;}
-.foot-social{display:inline-flex;align-items:center;gap:6px;color:var(--muted-2);font-size:13.5px;transition:color .25s;}
-.foot-social:hover{color:var(--accent);}
 
 /* reveal animation */
 .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);}
@@ -592,6 +480,8 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
    RESPONSIVE
    ============================================================ */
 @media(max-width:1080px){
+  .hero-inner{grid-template-columns:1fr;gap:70px;}
+  .hero-visual{max-width:560px;}
   .sol-wrap{grid-template-columns:1fr;gap:44px;}
   .why-wrap{grid-template-columns:1fr;gap:36px;}
   .svc-grid,.prob-grid,.port-grid{grid-template-columns:repeat(2,1fr);}
@@ -602,13 +492,10 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 @media(max-width:760px){
   body{font-size:16px;}
   .nav-links{display:none;}
-  .nav-cta .btn{display:none;}
+  .nav-cta .btn-ghost{display:none;}
   .nav-toggle{display:grid;}
   .mobile-menu{display:block;}
   .hero{padding:140px 0 80px;}
-  .glow.a{width:300px;height:300px;top:-100px;right:0;}
-  .glow.b{width:260px;height:260px;bottom:-120px;left:0;}
-  .contact-card .cglow{width:240px;height:240px;top:-80px;right:0;}
   .strip-inner{grid-template-columns:repeat(2,1fr);gap:34px 20px;}
   .price-grid{grid-template-columns:1fr;}
   .price.feat{order:-1;}
@@ -627,6 +514,11 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .hero-actions .btn{flex:1;}
 }
 @media(max-width:600px){
+  /* direct-edit drag-resizes on the hero heading/sub were pinned to desktop pixel
+     boxes — let them reflow fluidly on phones instead of overflowing/clipping */
+  .hero-copy h1{width:auto!important;height:auto!important;}
+  .hero-copy h1 em{width:auto!important;height:auto!important;}
+  .hero-copy .sub{width:auto!important;height:auto!important;}
   .hero-j3d-stage{min-height:320px;}
   .hero-j3d-stage .j3d{width:240px;height:240px;}
 }
@@ -710,7 +602,6 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="#top" class="brand"><span class="mark"><img src="assets/logo.png" alt="Jax Media" /></span>Jax<span class="sub">Media</span></a>
     <div class="nav-links">
       <a href="#services" class="link">Services</a>
-      <a href="#work" class="link">Work</a>
       <a href="#pricing" class="link">Pricing</a>
       <a href="#process" class="link">Process</a>
       <a href="#faq" class="link">FAQ</a>
@@ -723,7 +614,6 @@ document.addEventListener('DOMContentLoaded', function(){
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
-  <a href="#work">Work</a>
   <a href="#pricing">Pricing</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
@@ -738,30 +628,27 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="glow b" data-parallax="0.1"></div>
   </div>
   <div class="container hero-inner">
-    <h1 class="hero-arch-wrap">
-      <svg class="hero-arch" viewBox="0 0 1100 340" aria-label="Turn More Visitors Into Customers">
-        <defs>
-          <path id="archLine1" d="M120,190 A979.7,979.7 0 0 1 980,190" fill="none" />
-          <path id="archLine2" d="M170,290 A960.7,960.7 0 0 1 930,290" fill="none" />
-        </defs>
-        <text class="arch-l1"><textPath href="#archLine1" startOffset="50%" text-anchor="middle">Turn More Visitors</textPath></text>
-        <text class="arch-l2"><textPath href="#archLine2" startOffset="50%" text-anchor="middle">Into <tspan class="accent">Customers</tspan></textPath></text>
-      </svg>
-    </h1>
+    <div class="hero-copy">
+      <div class="hero-badge"><span class="dot"></span>Now booking projects for Q3 2026</div>
+      <h1 style="width: 404px; height: 214px">Turn More Visitors Into <em style="width: 456px; height: 87px">Customers</em></h1>
+      <p class="sub" style="width: 547px; height: 121px">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
+      <div class="hero-actions">
+        <a href="#contact" class="btn btn-primary">Book a Free Consultation <span class="arr">→</span></a>
+      </div>
+      <div class="hero-trust">
+        <span class="stars">★★★★★</span>
+        <span>Trusted by growing local &amp; service businesses</span>
+        <span class="div"></span>
+        <span>48-hour project kickoff</span>
+      </div>
+    </div>
 
     <div class="hero-j3d-stage">
       <div class="j3d" id="heroJ3d"></div>
     </div>
-
-    <p class="sub">We build modern websites designed to help businesses generate leads, increase bookings, and grow revenue — not just look pretty.</p>
-    <div class="hero-actions">
-      <a href="#contact" class="btn btn-primary">Book a Free Consultation <span class="arr">→</span></a>
-    </div>
-    <div class="hero-trust">
-      <span class="stars">★★★★★</span>
-      <span>Trusted by growing local &amp; service businesses</span>
-      <span class="div"></span>
-      <span>48-hour project kickoff</span>
+    <div class="hero-visual">
+      <div class="mock-wrap" id="mockWrap">
+      </div>
     </div>
   </div>
 </header>
@@ -779,66 +666,39 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- ========================= PROBLEM ========================= -->
 <section class="sec" id="problem">
   <div class="container">
-    <div class="prob-hero reveal">
-      <div class="prob-hero-copy">
-        <span class="eyebrow pill">The Problem</span>
-        <h2 class="prob-h2">Your website might be <em>quietly costing you</em> customers</h2>
-        <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
-      </div>
-      <div class="prob-hero-visual">
-        <div class="prob-blob-wrap">
-          <svg class="prob-blob-svg" viewBox="0 0 400 400">
-            <defs>
-              <radialGradient id="probBlobGrad" cx="32%" cy="28%" r="80%">
-                <stop offset="0%" stop-color="#dbe6ff"/>
-                <stop offset="30%" stop-color="var(--accent-soft)"/>
-                <stop offset="65%" stop-color="var(--accent)"/>
-                <stop offset="100%" stop-color="var(--accent-deep)"/>
-              </radialGradient>
-            </defs>
-            <path class="prob-blob-path" fill="url(#probBlobGrad)" d="M331.9,138.1 Q340.0,200.0 330.8,260.8 Q321.6,321.6 260.8,313.3 Q200.0,305.0 137.1,315.4 Q74.1,325.9 76.1,262.9 Q78.0,200.0 80.7,141.7 Q83.3,83.3 141.7,92.7 Q200.0,102.0 261.9,89.1 Q323.7,76.3 331.9,138.1 Z"/>
-          </svg>
-          <div class="prob-blob-shine"></div>
-          <div class="prob-blob-shadow"></div>
-        </div>
-        <svg class="prob-globe" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="30" cy="30" r="28"/>
-          <ellipse cx="30" cy="30" rx="12" ry="28"/>
-          <line x1="2" y1="30" x2="58" y2="30"/>
-          <path d="M6,18 Q30,30 54,18"/>
-          <path d="M6,42 Q30,30 54,42"/>
-        </svg>
-        <div class="prob-index"><span>01</span><i></i><span>06</span></div>
-      </div>
+    <div class="section-head reveal">
+      <span class="eyebrow">The Problem</span>
+      <h2>Your website might be <em>quietly costing you</em> customers</h2>
+      <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
     </div>
     <div class="prob-grid">
       <div class="prob reveal">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">01</div><h3>Outdated design</h3>
         <p>An old, cluttered site makes a great business look unprofessional — and visitors judge in seconds.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">02</div><h3>Low conversion rates</h3>
         <p>Traffic comes in, but no one books or buys. Without clear paths to action, visitors leave and don't return.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">03</div><h3>Poor mobile experience</h3>
         <p>Over half your visitors are on a phone. If it's slow or broken on mobile, you're losing them instantly.</p>
       </div>
       <div class="prob reveal">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">04</div><h3>Losing to competitors</h3>
         <p>When your rivals show up faster and look sharper, the customer clicks them — not you.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">05</div><h3>Lack of trust</h3>
         <p>No reviews, no proof, no credibility. Visitors hesitate — and hesitation kills sales.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        <div class="x"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 6L6 18M6 6l12 12"/></svg></div>
         <div class="pn">06</div><h3>No clear next step</h3>
         <p>Visitors don't know what to do next. A great site guides them straight to "book now."</p>
       </div>
@@ -857,12 +717,12 @@ document.addEventListener('DOMContentLoaded', function(){
           <p>Every Jax Media website is engineered around one goal: turning more of your visitors into paying customers.</p>
         </div>
         <div class="sol-list">
-          <div class="sol reveal"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Professional branding</h4><p>Designs that build instant credibility.</p></div></div>
-          <div class="sol reveal" data-d="1"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Lead generation</h4><p>Built to capture and convert enquiries.</p></div></div>
-          <div class="sol reveal" data-d="2"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Mobile optimized</h4><p>Flawless on every screen size.</p></div></div>
-          <div class="sol reveal" data-d="3"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>Lightning fast</h4><p>Speed that keeps visitors engaged.</p></div></div>
-          <div class="sol reveal"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>SEO-friendly</h4><p>Structured so customers can find you.</p></div></div>
-          <div class="sol reveal" data-d="1"><div class="chk"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="chk-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="chk-mark" d="M8,17.5 Q10.5,20.5 13,23.5 Q20,14 27,5.5" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div><h4>AI-powered</h4><p>Smart chat &amp; automation that never sleeps.</p></div></div>
+          <div class="sol reveal"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Professional branding</h4><p>Designs that build instant credibility.</p></div></div>
+          <div class="sol reveal" data-d="1"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Lead generation</h4><p>Built to capture and convert enquiries.</p></div></div>
+          <div class="sol reveal" data-d="2"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Mobile optimized</h4><p>Flawless on every screen size.</p></div></div>
+          <div class="sol reveal" data-d="3"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>Lightning fast</h4><p>Speed that keeps visitors engaged.</p></div></div>
+          <div class="sol reveal"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>SEO-friendly</h4><p>Structured so customers can find you.</p></div></div>
+          <div class="sol reveal" data-d="1"><div class="chk"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6"><path d="M20 6L9 17l-5-5"/></svg></div><div><h4>AI-powered</h4><p>Smart chat &amp; automation that never sleeps.</p></div></div>
         </div>
       </div>
       <div class="sol-visual reveal" data-d="2">
@@ -922,60 +782,6 @@ document.addEventListener('DOMContentLoaded', function(){
         <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></div>
         <h3>Lead Generation Systems</h3>
         <p>Complete funnels — forms, follow-ups, and automation — that capture and nurture every enquiry.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========================= SELECTED WORK ========================= -->
-<section class="sec" id="work" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow pill">Selected Work</span>
-      <h2>Concepts that show <em>what's possible</em></h2>
-      <p>Sample layouts previewing our style — real client projects will replace these as they launch.</p>
-    </div>
-    <div class="work-carousel">
-      <div class="work-track" id="workTrack">
-        <div class="port work-slide reveal">
-          <div class="port-shot pv-dark">
-            <span class="badge">Concept</span>
-            <div class="pv-mark">J</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Web Design / Branding</span>
-            <h3>Local Service Co.</h3>
-            <p>A conceptual layout for a local service business built to book more calls.</p>
-          </div>
-        </div>
-        <div class="port work-slide reveal" data-d="1">
-          <div class="port-shot pv-bright">
-            <span class="badge">Concept</span>
-            <div class="pv-text">Built to<br>Convert.</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Landing Page / UI</span>
-            <h3>Boutique Studio</h3>
-            <p>A high-impact landing page concept designed to turn ad clicks into booked consultations.</p>
-          </div>
-        </div>
-        <div class="port work-slide reveal" data-d="2">
-          <div class="port-shot pv-light">
-            <span class="badge">Concept</span>
-            <div class="pv-blob"></div>
-            <div class="pv-text pv-text-dark">Book<br>More.</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Product / UI Design</span>
-            <h3>Fitness App Concept</h3>
-            <p>An app-style interface concept exploring a clean, conversion-first booking flow.</p>
-          </div>
-        </div>
-      </div>
-      <div class="work-nav">
-        <button class="work-arrow" id="workPrev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <span class="work-count"><span id="workCur">01</span> / 03</span>
-        <button class="work-arrow" id="workNext" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </div>
@@ -1167,10 +973,6 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="foot-bottom">
       <span>© <span id="year">2026</span> Jax Media. All rights reserved.</span>
       <span>Websites Built to Grow Your Business</span>
-      <a class="foot-social" href="https://instagram.com/jaxai.media" target="_blank" rel="noopener noreferrer" aria-label="Jax Media on Instagram">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
-        @jaxai.media
-      </a>
     </div>
   </div>
 </footer>
@@ -1206,51 +1008,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   },{threshold:0.12,rootMargin:'0px 0px -8% 0px'});
   revs.forEach(function(r){io.observe(r);});
-
-  /* solution checkmarks: replay the sketch draw every time each card scrolls in/out */
-  var solCards=document.querySelectorAll('.sol');
-  var chkIo=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      e.target.classList.toggle('chk-on', e.isIntersecting);
-    });
-  },{threshold:0.4});
-  solCards.forEach(function(s){chkIo.observe(s);});
-
-  /* problem X marks: same replay-on-scroll sketch draw as the solution checkmarks */
-  var probCards=document.querySelectorAll('.prob');
-  var xIo=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      e.target.classList.toggle('x-on', e.isIntersecting);
-    });
-  },{threshold:0.4});
-  probCards.forEach(function(p){xIo.observe(p);});
-
-  /* work carousel: arrows scroll one slide, counter tracks the centered slide */
-  var workTrack=document.getElementById('workTrack');
-  if(workTrack){
-    var workSlides=workTrack.querySelectorAll('.work-slide');
-    var workCur=document.getElementById('workCur');
-    var workCurrent=0;
-    function workGoTo(i){
-      i=Math.max(0,Math.min(workSlides.length-1,i));
-      workSlides[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-    }
-    var workIo=new IntersectionObserver(function(entries){
-      var best=null;
-      entries.forEach(function(e){
-        if(e.intersectionRatio>0.6 && (!best || e.intersectionRatio>best.intersectionRatio)) best=e;
-      });
-      if(best){
-        workCurrent=Array.prototype.indexOf.call(workSlides,best.target);
-        if(workCur) workCur.textContent=String(workCurrent+1).padStart(2,'0');
-      }
-    },{root:workTrack,threshold:[0,0.25,0.5,0.6,0.75,1]});
-    workSlides.forEach(function(s){workIo.observe(s);});
-    var workPrev=document.getElementById('workPrev');
-    var workNext=document.getElementById('workNext');
-    if(workPrev) workPrev.addEventListener('click',function(){workGoTo(workCurrent-1);});
-    if(workNext) workNext.addEventListener('click',function(){workGoTo(workCurrent+1);});
-  }
 
   /* count-up numbers */
   function animateCount(el){
