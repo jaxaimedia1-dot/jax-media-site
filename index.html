@@ -90,8 +90,6 @@ section{position:relative;}
 }
 .eyebrow::before{content:"";width:26px;height:1px;background:var(--accent);opacity:.6;}
 .eyebrow.center::before{display:none;}
-.eyebrow.pill{background:rgba(36,86,230,.1);padding:7px 16px;border-radius:999px;}
-.eyebrow.pill::before{display:none;}
 
 h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .display{font-family:var(--font-display);font-weight:400;letter-spacing:0;}
@@ -104,65 +102,6 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
   letter-spacing:-0.005em;
 }
 .section-head h2 em{font-style:italic;font-weight:600;color:var(--accent);}
-/* problem hero: bold two-column layout w/ abstract blob, inspired by client reference */
-.prob-hero{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center;margin-bottom:80px;}
-.prob-hero-copy .eyebrow.pill{margin-bottom:24px;}
-.prob-h2{
-  font-family:var(--font-sans);font-weight:800;text-transform:uppercase;
-  letter-spacing:-0.02em;font-size:clamp(42px,5.4vw,72px);line-height:0.96;color:var(--text);
-}
-.prob-h2 em{font-style:normal;color:var(--accent);}
-.prob-hero-copy p{margin-top:26px;font-size:18px;line-height:1.6;color:var(--muted);max-width:440px;}
-
-.prob-hero-visual{position:relative;height:500px;display:grid;place-items:center;}
-.prob-blob-wrap{position:relative;width:420px;height:420px;perspective:1000px;display:grid;place-items:center;}
-.prob-blob-svg{
-  position:relative;width:400px;height:400px;overflow:visible;
-  transform-style:preserve-3d;filter:drop-shadow(0 50px 90px var(--accent-glow));
-  animation:probBlob3D 12s ease-in-out infinite;
-}
-.prob-blob-path{animation:probBlobPath 13s ease-in-out infinite;}
-.prob-blob-shine{
-  position:absolute;width:120px;height:92px;top:14%;left:16%;
-  background:radial-gradient(circle,rgba(255,255,255,.9),transparent 70%);
-  border-radius:50%;filter:blur(3px);mix-blend-mode:screen;pointer-events:none;
-  animation:probShineMove 12s ease-in-out infinite;
-}
-.prob-blob-shadow{
-  position:absolute;bottom:2px;left:50%;width:60%;height:34px;
-  background:radial-gradient(ellipse,rgba(8,12,32,.4),transparent 72%);
-  transform:translateX(-50%);filter:blur(9px);
-  animation:probShadowPulse 12s ease-in-out infinite;
-}
-@keyframes probBlobPath{
-  0%,100%{d:path("M331.9,138.1 Q340.0,200.0 330.8,260.8 Q321.6,321.6 260.8,313.3 Q200.0,305.0 137.1,315.4 Q74.1,325.9 76.1,262.9 Q78.0,200.0 80.7,141.7 Q83.3,83.3 141.7,92.7 Q200.0,102.0 261.9,89.1 Q323.7,76.3 331.9,138.1 Z");}
-  33%{d:path("M329.9,157.6 Q375.0,200.0 327.1,239.6 Q279.2,279.2 239.6,322.1 Q200.0,365.0 154.7,327.8 Q109.5,290.5 65.7,245.3 Q22.0,200.0 75.6,164.6 Q129.3,129.3 164.6,87.1 Q200.0,45.0 242.4,80.1 Q284.9,115.1 329.9,157.6 Z");}
-  66%{d:path("M294.2,161.8 Q312.0,200.0 314.3,258.3 Q316.7,316.7 258.3,327.3 Q200.0,338.0 163.9,305.1 Q127.9,272.1 77.9,236.1 Q28.0,200.0 67.3,153.3 Q106.7,106.7 153.3,64.3 Q200.0,22.0 238.2,72.8 Q276.4,123.6 294.2,161.8 Z");}
-}
-@keyframes probBlob3D{
-  0%,100%{transform:rotateX(10deg) rotateY(0deg) rotateZ(0deg) scale(1);}
-  25%{transform:rotateX(-8deg) rotateY(16deg) rotateZ(4deg) scale(1.04);}
-  50%{transform:rotateX(13deg) rotateY(-14deg) rotateZ(-3deg) scale(.96);}
-  75%{transform:rotateX(-10deg) rotateY(8deg) rotateZ(3deg) scale(1.02);}
-}
-@keyframes probShineMove{
-  0%,100%{transform:translate(0,0) scale(1);opacity:.85;}
-  30%{transform:translate(70px,34px) scale(.75);opacity:.5;}
-  60%{transform:translate(-24px,56px) scale(1.15);opacity:.75;}
-}
-@keyframes probShadowPulse{
-  0%,100%{transform:translateX(-50%) scale(1);opacity:.5;}
-  50%{transform:translateX(-50%) scale(.86);opacity:.32;}
-}
-.prob-globe{position:absolute;top:6px;right:10px;width:64px;height:64px;color:var(--border-2);opacity:.8;}
-.prob-index{position:absolute;right:2px;bottom:4px;display:flex;flex-direction:column;align-items:center;gap:8px;font-family:var(--font-mono);font-size:12.5px;color:var(--muted-2);letter-spacing:.05em;}
-.prob-index i{width:1px;height:30px;background:var(--border-2);font-style:normal;}
-@media(max-width:900px){
-  .prob-hero{grid-template-columns:1fr;gap:40px;}
-  .prob-hero-visual{height:320px;order:-1;}
-  .prob-blob-wrap{width:280px;height:280px;}
-  .prob-blob-svg{width:260px;height:260px;}
-}
 .section-head p{color:var(--muted);font-size:19px;margin-top:20px;max-width:560px;}
 .section-head.center{margin-left:auto;margin-right:auto;text-align:center;}
 .section-head.center p{margin-left:auto;margin-right:auto;}
@@ -424,37 +363,11 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .port{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s var(--ease),border-color .45s;}
 .port:hover{transform:translateY(-7px);border-color:var(--border-2);}
-
-/* work carousel: slide deck of project cards */
-.work-carousel{position:relative;}
-.work-track{
-  display:flex;gap:24px;overflow-x:auto;scroll-snap-type:x mandatory;
-  scroll-behavior:smooth;padding:6px 6px 14px;margin:-6px -6px 0;
-  -webkit-overflow-scrolling:touch;scrollbar-width:none;
-}
-.work-track::-webkit-scrollbar{display:none;}
-.work-slide{flex:0 0 auto;width:min(560px,78vw);scroll-snap-align:center;}
-.work-nav{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:36px;}
-.work-arrow{
-  width:46px;height:46px;border-radius:50%;border:1px solid var(--border-2);
-  background:var(--surface);display:grid;place-items:center;color:var(--text);
-  transition:transform .3s var(--ease),background .3s,border-color .3s,color .3s;cursor:pointer;
-}
-.work-arrow:hover{background:var(--accent);color:#fff;border-color:var(--accent);transform:translateY(-2px);}
-.work-count{font-family:var(--font-mono);font-size:13px;letter-spacing:.08em;color:var(--muted-2);min-width:64px;text-align:center;}
 .port-shot{height:210px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
 .port-shot .ph{position:absolute;inset:0;}
 .ph-stripe{background:repeating-linear-gradient(135deg,#e7eaef,#e7eaef 11px,#dde1e8 11px,#dde1e8 22px);}
 .port-shot .ph-label{position:absolute;left:0;right:0;bottom:0;padding:12px 16px;font-family:var(--font-mono);font-size:10.5px;color:var(--muted-2);letter-spacing:.08em;display:flex;align-items:center;gap:7px;}
-.port-shot .badge{position:absolute;top:14px;left:14px;z-index:2;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
-/* bold graphic project-card visuals */
-.pv-dark{background:linear-gradient(155deg,var(--accent-deep),#050912 78%);}
-.pv-mark{position:absolute;right:-18px;bottom:-46px;font-family:var(--font-editorial);font-style:italic;font-weight:700;font-size:200px;line-height:1;color:rgba(255,255,255,.08);}
-.pv-bright{background:linear-gradient(155deg,var(--accent-soft),var(--accent));display:flex;align-items:flex-end;padding:24px;}
-.pv-light{background:linear-gradient(155deg,#eef2fe,#dbe3fb);display:flex;align-items:flex-end;padding:24px;overflow:hidden;}
-.pv-blob{position:absolute;width:160px;height:160px;top:-40px;right:-40px;border-radius:31% 69% 73% 27% / 48% 36% 64% 52%;background:radial-gradient(circle at 30% 30%,var(--accent-soft),var(--accent));opacity:.9;animation:probBlobMorph 9s ease-in-out infinite;}
-.pv-text{font-family:var(--font-editorial);font-style:italic;font-weight:600;font-size:32px;line-height:1.05;color:#ffffff;position:relative;z-index:1;}
-.pv-text-dark{font-family:var(--font-sans);font-style:normal;font-weight:800;text-transform:uppercase;letter-spacing:-0.01em;font-size:28px;color:var(--text);}
+.port-shot .badge{position:absolute;top:14px;left:14px;font-family:var(--font-mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.82);backdrop-filter:blur(6px);border:1px solid var(--border-2);padding:5px 10px;border-radius:7px;color:var(--accent);}
 /* tiny rendered site inside shot */
 .fake-site{position:absolute;inset:0;padding:20px;display:flex;flex-direction:column;gap:9px;}
 .fake-site .fnav{display:flex;justify-content:space-between;align-items:center;}
@@ -710,7 +623,6 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="#top" class="brand"><span class="mark"><img src="assets/logo.png" alt="Jax Media" /></span>Jax<span class="sub">Media</span></a>
     <div class="nav-links">
       <a href="#services" class="link">Services</a>
-      <a href="#work" class="link">Work</a>
       <a href="#pricing" class="link">Pricing</a>
       <a href="#process" class="link">Process</a>
       <a href="#faq" class="link">FAQ</a>
@@ -723,7 +635,6 @@ document.addEventListener('DOMContentLoaded', function(){
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
-  <a href="#work">Work</a>
   <a href="#pricing">Pricing</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
@@ -779,37 +690,10 @@ document.addEventListener('DOMContentLoaded', function(){
 <!-- ========================= PROBLEM ========================= -->
 <section class="sec" id="problem">
   <div class="container">
-    <div class="prob-hero reveal">
-      <div class="prob-hero-copy">
-        <span class="eyebrow pill">The Problem</span>
-        <h2 class="prob-h2">Your website might be <em>quietly costing you</em> customers</h2>
-        <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
-      </div>
-      <div class="prob-hero-visual">
-        <div class="prob-blob-wrap">
-          <svg class="prob-blob-svg" viewBox="0 0 400 400">
-            <defs>
-              <radialGradient id="probBlobGrad" cx="32%" cy="28%" r="80%">
-                <stop offset="0%" stop-color="#dbe6ff"/>
-                <stop offset="30%" stop-color="var(--accent-soft)"/>
-                <stop offset="65%" stop-color="var(--accent)"/>
-                <stop offset="100%" stop-color="var(--accent-deep)"/>
-              </radialGradient>
-            </defs>
-            <path class="prob-blob-path" fill="url(#probBlobGrad)" d="M331.9,138.1 Q340.0,200.0 330.8,260.8 Q321.6,321.6 260.8,313.3 Q200.0,305.0 137.1,315.4 Q74.1,325.9 76.1,262.9 Q78.0,200.0 80.7,141.7 Q83.3,83.3 141.7,92.7 Q200.0,102.0 261.9,89.1 Q323.7,76.3 331.9,138.1 Z"/>
-          </svg>
-          <div class="prob-blob-shine"></div>
-          <div class="prob-blob-shadow"></div>
-        </div>
-        <svg class="prob-globe" viewBox="0 0 60 60" fill="none" stroke="currentColor" stroke-width="1">
-          <circle cx="30" cy="30" r="28"/>
-          <ellipse cx="30" cy="30" rx="12" ry="28"/>
-          <line x1="2" y1="30" x2="58" y2="30"/>
-          <path d="M6,18 Q30,30 54,18"/>
-          <path d="M6,42 Q30,30 54,42"/>
-        </svg>
-        <div class="prob-index"><span>01</span><i></i><span>06</span></div>
-      </div>
+    <div class="section-head reveal">
+      <span class="eyebrow">The Problem</span>
+      <h2>Your website might be <em>quietly costing you</em> customers</h2>
+      <p>Most business websites look fine — but lose visitors every single day. Here's where the money leaks out.</p>
     </div>
     <div class="prob-grid">
       <div class="prob reveal">
@@ -922,60 +806,6 @@ document.addEventListener('DOMContentLoaded', function(){
         <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></div>
         <h3>Lead Generation Systems</h3>
         <p>Complete funnels — forms, follow-ups, and automation — that capture and nurture every enquiry.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ========================= SELECTED WORK ========================= -->
-<section class="sec" id="work" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
-  <div class="container">
-    <div class="section-head reveal">
-      <span class="eyebrow pill">Selected Work</span>
-      <h2>Concepts that show <em>what's possible</em></h2>
-      <p>Sample layouts previewing our style — real client projects will replace these as they launch.</p>
-    </div>
-    <div class="work-carousel">
-      <div class="work-track" id="workTrack">
-        <div class="port work-slide reveal">
-          <div class="port-shot pv-dark">
-            <span class="badge">Concept</span>
-            <div class="pv-mark">J</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Web Design / Branding</span>
-            <h3>Local Service Co.</h3>
-            <p>A conceptual layout for a local service business built to book more calls.</p>
-          </div>
-        </div>
-        <div class="port work-slide reveal" data-d="1">
-          <div class="port-shot pv-bright">
-            <span class="badge">Concept</span>
-            <div class="pv-text">Built to<br>Convert.</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Landing Page / UI</span>
-            <h3>Boutique Studio</h3>
-            <p>A high-impact landing page concept designed to turn ad clicks into booked consultations.</p>
-          </div>
-        </div>
-        <div class="port work-slide reveal" data-d="2">
-          <div class="port-shot pv-light">
-            <span class="badge">Concept</span>
-            <div class="pv-blob"></div>
-            <div class="pv-text pv-text-dark">Book<br>More.</div>
-          </div>
-          <div class="port-body">
-            <span class="cat">Product / UI Design</span>
-            <h3>Fitness App Concept</h3>
-            <p>An app-style interface concept exploring a clean, conversion-first booking flow.</p>
-          </div>
-        </div>
-      </div>
-      <div class="work-nav">
-        <button class="work-arrow" id="workPrev" aria-label="Previous project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M15 6l-6 6 6 6"/></svg></button>
-        <span class="work-count"><span id="workCur">01</span> / 03</span>
-        <button class="work-arrow" id="workNext" aria-label="Next project"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M9 6l6 6-6 6"/></svg></button>
       </div>
     </div>
   </div>
@@ -1224,33 +1054,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   },{threshold:0.4});
   probCards.forEach(function(p){xIo.observe(p);});
-
-  /* work carousel: arrows scroll one slide, counter tracks the centered slide */
-  var workTrack=document.getElementById('workTrack');
-  if(workTrack){
-    var workSlides=workTrack.querySelectorAll('.work-slide');
-    var workCur=document.getElementById('workCur');
-    var workCurrent=0;
-    function workGoTo(i){
-      i=Math.max(0,Math.min(workSlides.length-1,i));
-      workSlides[i].scrollIntoView({behavior:'smooth',inline:'center',block:'nearest'});
-    }
-    var workIo=new IntersectionObserver(function(entries){
-      var best=null;
-      entries.forEach(function(e){
-        if(e.intersectionRatio>0.6 && (!best || e.intersectionRatio>best.intersectionRatio)) best=e;
-      });
-      if(best){
-        workCurrent=Array.prototype.indexOf.call(workSlides,best.target);
-        if(workCur) workCur.textContent=String(workCurrent+1).padStart(2,'0');
-      }
-    },{root:workTrack,threshold:[0,0.25,0.5,0.6,0.75,1]});
-    workSlides.forEach(function(s){workIo.observe(s);});
-    var workPrev=document.getElementById('workPrev');
-    var workNext=document.getElementById('workNext');
-    if(workPrev) workPrev.addEventListener('click',function(){workGoTo(workCurrent-1);});
-    if(workNext) workNext.addEventListener('click',function(){workGoTo(workCurrent+1);});
-  }
 
   /* count-up numbers */
   function animateCount(el){
