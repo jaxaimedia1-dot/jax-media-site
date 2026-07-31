@@ -295,16 +295,21 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .sec-tight{padding:96px 0;}
 
 /* problem */
-.prob-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+.prob-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:64px;}
 .prob{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:30px;transition:transform .4s var(--ease),border-color .4s,background .4s;position:relative;overflow:hidden;
+  padding:34px 0;border-bottom:1px solid var(--border);
+  transition:padding-left .4s var(--ease);position:relative;
 }
-.prob:hover{transform:translateY(-5px);border-color:rgba(36,86,230,.35);}
-.prob .pn{font-family:var(--font-mono);font-size:12px;color:var(--muted-2);letter-spacing:.1em;}
-.prob h3{font-size:20px;margin:16px 0 9px;font-weight:600;letter-spacing:-0.01em;font-family:var(--font-sans);}
-.prob p{color:var(--muted);font-size:15px;line-height:1.6;}
-.prob .x{position:absolute;top:22px;right:22px;width:34px;height:34px;display:grid;place-items:center;color:var(--accent);}
+.prob:hover{padding-left:12px;}
+.prob:nth-child(odd){padding-right:32px;border-right:1px solid var(--border);}
+.prob:nth-child(even){padding-left:32px;}
+.prob:hover:nth-child(even){padding-left:44px;}
+.prob:nth-last-child(-n+2){border-bottom:none;}
+.prob-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;}
+.prob .pn{font-family:var(--font-editorial);font-style:italic;font-size:26px;color:var(--accent);line-height:1;}
+.prob h3{font-size:20px;margin-bottom:9px;font-weight:600;letter-spacing:-0.01em;font-family:var(--font-sans);}
+.prob p{color:var(--muted);font-size:15px;line-height:1.6;max-width:400px;}
+.prob .x{width:34px;height:34px;display:grid;place-items:center;color:var(--accent);flex-shrink:0;}
 .prob .x svg{transform:rotate(-2.5deg);}
 .prob .x .x-box{stroke-dasharray:140;stroke-dashoffset:140;transition:stroke-dashoffset .5s var(--ease);}
 .prob .x .x-mark-a{stroke-dasharray:30;stroke-dashoffset:30;transition:stroke-dashoffset .35s var(--ease) .38s;}
@@ -534,7 +539,13 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .foot-cols{gap:44px;}
 }
 @media(max-width:540px){
-  .svc-grid,.prob-grid,.port-grid,.proc-grid{grid-template-columns:1fr;}
+  .svc-grid,.port-grid,.proc-grid{grid-template-columns:1fr;}
+  .prob-grid{grid-template-columns:1fr;column-gap:0;}
+  .prob:nth-child(odd){padding-right:0;border-right:none;}
+  .prob:nth-child(even){padding-left:0;}
+  .prob:hover:nth-child(even){padding-left:12px;}
+  .prob:nth-last-child(-n+2){border-bottom:1px solid var(--border);}
+  .prob:last-child{border-bottom:none;}
   .contact-card{padding:32px 24px;}
   .before-after{flex-direction:column;}
   .hero-actions .btn{flex:1;}
@@ -697,33 +708,33 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
     <div class="prob-grid">
       <div class="prob reveal">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">01</div><h3>Outdated design</h3>
+        <div class="prob-head"><div class="pn">01</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>Outdated design</h3>
         <p>An old, cluttered site makes a great business look unprofessional — and visitors judge in seconds.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">02</div><h3>Low conversion rates</h3>
+        <div class="prob-head"><div class="pn">02</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>Low conversion rates</h3>
         <p>Traffic comes in, but no one books or buys. Without clear paths to action, visitors leave and don't return.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">03</div><h3>Poor mobile experience</h3>
+        <div class="prob-head"><div class="pn">03</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>Poor mobile experience</h3>
         <p>Over half your visitors are on a phone. If it's slow or broken on mobile, you're losing them instantly.</p>
       </div>
       <div class="prob reveal">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">04</div><h3>Losing to competitors</h3>
+        <div class="prob-head"><div class="pn">04</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>Losing to competitors</h3>
         <p>When your rivals show up faster and look sharper, the customer clicks them — not you.</p>
       </div>
       <div class="prob reveal" data-d="1">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">05</div><h3>Lack of trust</h3>
+        <div class="prob-head"><div class="pn">05</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>Lack of trust</h3>
         <p>No reviews, no proof, no credibility. Visitors hesitate — and hesitation kills sales.</p>
       </div>
       <div class="prob reveal" data-d="2">
-        <div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
-        <div class="pn">06</div><h3>No clear next step</h3>
+        <div class="prob-head"><div class="pn">06</div><div class="x"><svg width="34" height="34" viewBox="0 0 34 34" fill="none"><path class="x-box" d="M5,6 Q4,4.5 6,4.2 L25.5,3.6 Q28,3.4 28.3,6 L29,25.5 Q29.2,28 26.5,28.2 L7,29 Q4.5,29.2 4.3,26.5 L5,6 Z" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-a" d="M8,8 Q13,13 17,17 Q21,21 26,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/><path class="x-mark-b" d="M26,8 Q21,13 17,17 Q13,21 8,26" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></div></div>
+        <h3>No clear next step</h3>
         <p>Visitors don't know what to do next. A great site guides them straight to "book now."</p>
       </div>
     </div>
