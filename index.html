@@ -395,14 +395,20 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-disclaimer{text-align:center;color:var(--muted-2);font-size:12.5px;margin-top:30px;font-family:var(--font-mono);letter-spacing:.03em;}
 
 /* why choose */
-.why-wrap{display:grid;grid-template-columns:.85fr 1.15fr;gap:56px;}
-.why-list{display:flex;flex-direction:column;gap:4px;}
-.why{display:flex;gap:22px;padding:26px 4px;border-bottom:1px solid var(--border);transition:padding-left .4s var(--ease);}
-.why:hover{padding-left:14px;}
+.why-head{max-width:760px;margin-bottom:8px;}
+.why-title{font-size:clamp(44px,6vw,76px);line-height:0.98;margin-top:22px;}
+.why-list{display:flex;flex-direction:column;margin-top:24px;}
+.why{display:flex;align-items:center;gap:28px;padding:0;border-bottom:1px solid var(--border);transition:padding-left .4s var(--ease);min-height:150px;}
+.why:hover{padding-left:10px;}
 .why:last-child{border-bottom:none;}
-.why .wn{font-family:var(--font-display);font-size:34px;color:var(--accent);line-height:1;flex-shrink:0;width:54px;}
+.why .wn{font-family:var(--font-editorial);font-style:italic;font-weight:500;font-size:28px;color:var(--accent);line-height:1;flex-shrink:0;width:48px;}
+.why-body{flex:1;min-width:0;padding:28px 0;}
 .why h3{font-size:20px;font-weight:600;margin-bottom:7px;font-family:var(--font-sans);letter-spacing:-0.01em;}
-.why p{color:var(--muted);font-size:15px;line-height:1.6;}
+.why p{color:var(--muted);font-size:15px;line-height:1.6;max-width:420px;}
+.why-img{position:relative;flex-shrink:0;width:200px;height:150px;overflow:hidden;}
+.why-img img{width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(88%) contrast(1.08) brightness(1.03);transition:transform .6s var(--ease);}
+.why-img::after{content:"";position:absolute;inset:0;background:linear-gradient(160deg,var(--accent-soft),var(--accent-deep));mix-blend-mode:color;opacity:.62;pointer-events:none;}
+.why:hover .why-img img{transform:scale(1.06);}
 
 /* pricing */
 .price-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;align-items:stretch;}
@@ -513,7 +519,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
    ============================================================ */
 @media(max-width:1080px){
   .sol-wrap{grid-template-columns:1fr;gap:44px;}
-  .why-wrap{grid-template-columns:1fr;gap:36px;}
+  .why-img{width:150px;}
   .svc-grid,.prob-grid,.port-grid{grid-template-columns:repeat(2,1fr);}
   .proc-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px;}
   .proc-line{display:none;}
@@ -535,6 +541,10 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .sec{padding:84px 0;}
   .sec-tight{padding:72px 0;}
   .sol-list{grid-template-columns:1fr;}
+  .why{flex-wrap:wrap;min-height:0;padding:22px 0;}
+  .why-body{padding:0;flex-basis:100%;order:2;}
+  .why .wn{order:1;}
+  .why-img{order:1;margin-left:auto;width:110px;height:80px;}
   .chip.c1{left:-10px;top:-18px;}
   .chip.c2{right:-8px;}
   .container{padding:0 20px;}
@@ -809,18 +819,38 @@ document.addEventListener('DOMContentLoaded', function(){
 
 <!-- ========================= WHY CHOOSE ========================= -->
 <section class="sec" id="why">
-  <div class="container why-wrap">
-    <div class="section-head reveal" style="margin-bottom:0;">
-      <span class="eyebrow">Why Jax Media</span>
-      <h2>A partner, not just a <em>vendor</em></h2>
+  <div class="container">
+    <div class="why-head reveal">
+      <span class="eyebrow pill">Why Jax Media</span>
+      <h2 class="why-title">A partner, not just a <em>vendor</em></h2>
       <p>We don't just hand over a website and disappear. We build for growth and stay invested in your results.</p>
     </div>
     <div class="why-list">
-      <div class="why reveal"><div class="wn">01</div><div><h3>Fast turnaround</h3><p>Most projects go live in around two weeks — without cutting corners on quality or strategy.</p></div></div>
-      <div class="why reveal" data-d="1"><div class="wn">02</div><div><h3>Modern, premium design</h3><p>Designs that make small businesses look like industry leaders and earn trust instantly.</p></div></div>
-      <div class="why reveal" data-d="2"><div class="wn">03</div><div><h3>Conversion-focused strategy</h3><p>Every section, button, and word is placed to guide visitors toward becoming customers.</p></div></div>
-      <div class="why reveal" data-d="3"><div class="wn">04</div><div><h3>AI-enhanced solutions</h3><p>Smart chat, automation, and lead capture that work for you 24/7 — even while you sleep.</p></div></div>
-      <div class="why reveal" data-d="4"><div class="wn">05</div><div><h3>Ongoing support</h3><p>We're here after launch with maintenance, optimization, and a real human to call.</p></div></div>
+      <div class="why reveal">
+        <div class="wn">01</div>
+        <div class="why-body"><h3>Fast turnaround</h3><p>Most projects go live in around two weeks — without cutting corners on quality or strategy.</p></div>
+        <div class="why-img"><img src="assets/why/fast-turnaround.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="why reveal" data-d="1">
+        <div class="wn">02</div>
+        <div class="why-body"><h3>Modern, premium design</h3><p>Designs that make small businesses look like industry leaders and earn trust instantly.</p></div>
+        <div class="why-img"><img src="assets/why/premium-design.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="why reveal" data-d="2">
+        <div class="wn">03</div>
+        <div class="why-body"><h3>Conversion-focused strategy</h3><p>Every section, button, and word is placed to guide visitors toward becoming customers.</p></div>
+        <div class="why-img"><img src="assets/why/conversion.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="why reveal" data-d="3">
+        <div class="wn">04</div>
+        <div class="why-body"><h3>AI-enhanced solutions</h3><p>Smart chat, automation, and lead capture that work for you 24/7 — even while you sleep.</p></div>
+        <div class="why-img"><img src="assets/why/ai.jpg" alt="" loading="lazy" /></div>
+      </div>
+      <div class="why reveal" data-d="4">
+        <div class="wn">05</div>
+        <div class="why-body"><h3>Ongoing support</h3><p>We're here after launch with maintenance, optimization, and a real human to call.</p></div>
+        <div class="why-img"><img src="assets/why/support.jpg" alt="" loading="lazy" /></div>
+      </div>
     </div>
   </div>
 </section>
