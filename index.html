@@ -183,7 +183,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 /* ============================================================
    HERO
    ============================================================ */
-.hero{padding:150px 0 90px;overflow:hidden;}
+.hero{padding:150px 0 90px;overflow:hidden;position:relative;}
 .hero-bg{position:absolute;inset:0;z-index:0;pointer-events:none;perspective:1300px;transform-style:preserve-3d;}
 .hero-grid{
   position:absolute;inset:0;
@@ -196,6 +196,69 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .glow{position:absolute;border-radius:50%;filter:blur(90px);opacity:.5;}
 .glow.a{width:620px;height:620px;background:radial-gradient(circle,var(--accent) 0%,transparent 65%);top:-220px;right:-120px;opacity:.2;}
 .glow.b{width:520px;height:520px;background:radial-gradient(circle,#5680f2 0%,transparent 65%);bottom:-260px;left:-160px;opacity:.14;}
+
+.hero-blobs{position:absolute;inset:0;z-index:1;pointer-events:none;overflow:hidden;}
+.blob{
+  position:absolute;top:50%;left:50%;
+  background:linear-gradient(150deg,rgba(170,200,255,.22) 0%,rgba(36,86,230,.08) 50%,rgba(20,50,150,.16) 100%);
+  backdrop-filter:blur(46px) saturate(220%) contrast(105%);
+  -webkit-backdrop-filter:blur(46px) saturate(220%) contrast(105%);
+  border:1px solid rgba(255,255,255,.4);
+  box-shadow:
+    0 70px 160px -50px rgba(20,50,150,.4),
+    inset 0 2px 1px rgba(255,255,255,.65),
+    inset 0 -40px 80px -30px rgba(8,16,48,.3);
+  overflow:hidden;
+}
+.blob::before{
+  content:"";position:absolute;top:-30%;left:-20%;
+  width:75%;height:65%;
+  background:linear-gradient(120deg,rgba(255,255,255,1),rgba(255,255,255,0) 70%);
+  opacity:.85;
+}
+.blob-1{
+  width:clamp(480px,78vw,1180px);height:clamp(460px,66vw,980px);
+  top:48%;
+  animation:blob1Morph 9s ease-in-out infinite, blob1Float 8s ease-in-out infinite;
+}
+.blob-1::before{animation:glareDrift 6s ease-in-out infinite;}
+.blob-2{
+  width:clamp(300px,42vw,620px);height:clamp(300px,38vw,560px);
+  top:62%;left:62%;
+  background:linear-gradient(150deg,rgba(170,200,255,.2) 0%,rgba(36,86,230,.06) 55%,rgba(20,50,150,.14) 100%);
+  animation:blob2Morph 11s ease-in-out infinite, blob2Float 10s ease-in-out infinite;
+}
+.blob-2::before{animation:glareDrift 7s ease-in-out infinite reverse;}
+@keyframes blob1Morph{
+  0%,100%{border-radius:58% 42% 65% 35% / 45% 60% 40% 55%;}
+  20%{border-radius:35% 65% 40% 60% / 65% 35% 60% 40%;}
+  45%{border-radius:68% 32% 55% 45% / 38% 68% 32% 62%;}
+  70%{border-radius:42% 58% 62% 38% / 58% 42% 68% 32%;}
+}
+@keyframes blob1Float{
+  0%,100%{transform:translate(-50%,-50%) rotate(0deg) scale(1);}
+  25%{transform:translate(-42%,-56%) rotate(10deg) scale(1.08);}
+  50%{transform:translate(-56%,-46%) rotate(-6deg) scale(.95);}
+  75%{transform:translate(-48%,-42%) rotate(7deg) scale(1.05);}
+}
+@keyframes blob2Morph{
+  0%,100%{border-radius:42% 58% 60% 40% / 60% 40% 55% 45%;}
+  30%{border-radius:65% 35% 40% 60% / 40% 65% 38% 62%;}
+  60%{border-radius:38% 62% 58% 42% / 62% 38% 60% 40%;}
+}
+@keyframes blob2Float{
+  0%,100%{transform:translate(-50%,-50%) rotate(0deg) scale(1);}
+  40%{transform:translate(-58%,-42%) rotate(-14deg) scale(1.1);}
+  70%{transform:translate(-44%,-58%) rotate(9deg) scale(.92);}
+}
+@keyframes glareDrift{
+  0%,100%{transform:translate(0,0) rotate(-14deg);opacity:.85;}
+  50%{transform:translate(22%,18%) rotate(-6deg);opacity:.4;}
+}
+@media(prefers-reduced-motion:reduce){
+  .blob-1,.blob-2{animation:none;border-radius:55% 45% 60% 40% / 45% 55% 40% 60%;transform:translate(-50%,-50%);}
+  .blob::before{animation:none;}
+}
 
 .hero-inner{position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;text-align:center;padding-top:4px;}
 .hero-badge{
@@ -276,10 +339,12 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 /* hero visual: continuously-spinning 3D J (replaces old browser mockup) */
 .hero-j3d-stage{position:relative;min-height:400px;margin-top:-40px;display:grid;place-items:center;perspective:1400px;}
 .hero-j3d-stage::before{content:"";position:absolute;inset:8%;background:radial-gradient(closest-side,var(--accent-glow),transparent 72%);filter:blur(10px);pointer-events:none;}
-.hero-j3d-stage .j3d{position:relative;width:380px;height:380px;animation:heroJSpin 9s linear infinite;}
+.hero-j3d-stage .j3d{position:relative;z-index:1;width:380px;height:380px;animation:heroJSpin 9s linear infinite;}
 @keyframes heroJSpin{from{transform:rotateX(14deg) rotateY(0deg);}to{transform:rotateX(14deg) rotateY(360deg);}}
 @media(max-width:1080px){.hero-j3d-stage{min-height:380px;}.hero-j3d-stage .j3d{width:300px;height:300px;}}
-@media(prefers-reduced-motion:reduce){.hero-j3d-stage .j3d{animation:none;transform:rotateX(14deg) rotateY(28deg);}}
+@media(prefers-reduced-motion:reduce){
+  .hero-j3d-stage .j3d{animation:none;transform:rotateX(14deg) rotateY(28deg);}
+}
 
 /* ============================================================
    MARQUEE / STATS STRIP
@@ -671,6 +736,10 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="hero-grid"></div>
     <div class="glow a" data-parallax="0.06"></div>
     <div class="glow b" data-parallax="0.1"></div>
+  </div>
+  <div class="hero-blobs">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
   </div>
   <div class="container hero-inner">
     <h1 class="hero-arch-wrap">
