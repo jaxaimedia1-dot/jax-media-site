@@ -647,8 +647,8 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 /* full-screen cover that fades out at the end to reveal the site */
 .intro-cover{
   position:absolute;inset:0;
-  background:#f3f4f7 url('assets/intro-create-bg.jpg') center/cover no-repeat;
-  animation:introCover 3.1s ease-in-out forwards;
+  background:linear-gradient(rgba(243,244,247,.62),rgba(243,244,247,.62)),url('assets/intro-create-bg.jpg') center/cover no-repeat,#f3f4f7;
+  animation:introCover 4.6s ease-in-out forwards;
   will-change:opacity;
 }
 @keyframes introCover{
@@ -657,13 +657,13 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 }
 /* the J extruded into a REAL 3D object (stacked layers), spinning slowly, centered */
 .intro-runner{
-  position:relative;width:220px;height:220px;
+  position:relative;width:270px;height:270px;
   display:grid;place-items:center;
   transform-style:preserve-3d;
-  animation:introSpin 3.1s cubic-bezier(.42,.04,.32,1) forwards;
+  animation:introSpin 4.6s cubic-bezier(.42,.04,.32,1) forwards;
   will-change:transform,opacity;
 }
-.j3d{position:relative;width:200px;height:200px;transform-style:preserve-3d;}
+.j3d{position:relative;width:240px;height:240px;transform-style:preserve-3d;}
 .j3d img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;}
 /* 3D spin: zoom in, rotate a full 360° on the Y axis (tilted for depth), then fade away */
 @keyframes introSpin{
@@ -1277,7 +1277,7 @@ document.addEventListener('DOMContentLoaded', function(){
   if(!intro) return;
   var reduce=window.matchMedia('(prefers-reduced-motion:reduce)').matches;
   if(reduce){ intro.classList.add('gone'); return; }
-  setTimeout(function(){ intro.classList.add('gone'); }, 3250);
+  setTimeout(function(){ intro.classList.add('gone'); }, 4750);
 })();
 </script>
 
