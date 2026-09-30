@@ -649,21 +649,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   0%,70%{opacity:1;}
   100%{opacity:0;}
 }
-/* the "create" reference image sits on its own layer so it can fade in at the start and
-   out at the end independently of the solid backdrop above (which must stay fully opaque
-   the whole time so the real site never flashes through underneath) */
-.intro-bg-img{
-  position:absolute;inset:0;
-  background:linear-gradient(rgba(243,244,247,.62),rgba(243,244,247,.62)),url('assets/intro-create-bg.jpg') center/cover no-repeat;
-  animation:introBgFade 4.6s ease-in-out forwards;
-  will-change:opacity;
-}
-@keyframes introBgFade{
-  0%{opacity:0;}
-  18%{opacity:1;}
-  70%{opacity:1;}
-  100%{opacity:0;}
-}
 /* the J extruded into a REAL 3D object (stacked layers), spinning slowly, centered */
 .intro-runner{
   position:relative;width:270px;height:270px;
@@ -688,7 +673,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 <!-- ========================= INTRO REVEAL ========================= -->
 <div id="intro">
   <div class="intro-cover"></div>
-  <div class="intro-bg-img"></div>
   <div class="intro-runner">
     <div class="j3d" id="j3d"></div>
   </div>
