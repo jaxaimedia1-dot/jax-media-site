@@ -451,6 +451,8 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-disclaimer{text-align:center;color:var(--muted-2);font-size:12.5px;margin-top:30px;font-family:var(--font-mono);letter-spacing:.03em;}
 .port-link{display:inline-flex;align-items:center;gap:5px;margin-top:16px;font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--accent);text-decoration:none;}
 .port-link:hover{text-decoration:underline;}
+.port-link .arr{transition:transform .35s var(--ease);}
+.port-link:hover .arr{transform:translateX(4px);}
 .port-link.is-self{color:var(--muted-2);}
 
 /* why choose */
@@ -899,6 +901,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <span class="cat">Concept Website</span>
           <h3>Gurney Landscaping</h3>
           <p>A concept site for a lawn care brand — full-bleed photography, warm editorial type, and a clear path to booking a free estimate.</p>
+          <a class="port-link" href="https://jaxaimedia1-dot.github.io/gurney-landscaping-demo/" target="_blank" rel="noopener">View Demo <span class="arr">→</span></a>
         </div>
       </div>
       <div class="port reveal" data-d="1">
@@ -910,6 +913,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <span class="cat">Concept Website</span>
           <h3>The Chosen One</h3>
           <p>A bold, typography-led storefront for a minimal clothing label — oversized display type and a clean grid built to let the product photography do the talking.</p>
+          <a class="port-link" href="https://jaxaimedia1-dot.github.io/the-chosen-one-demo/" target="_blank" rel="noopener">View Demo <span class="arr">→</span></a>
         </div>
       </div>
       <div class="port reveal" data-d="2">
@@ -1037,7 +1041,7 @@ document.addEventListener('DOMContentLoaded', function(){
       <div class="proc reveal"><div class="pdot">1</div><div class="pstep">Step 01</div><h3>Discovery Call</h3><p>We learn your business, goals, and customers — and map out what success looks like.</p></div>
       <div class="proc reveal" data-d="1"><div class="pdot">2</div><div class="pstep">Step 02</div><h3>Strategy &amp; Planning</h3><p>We design a clear plan: structure, messaging, and the path that turns visitors into leads.</p></div>
       <div class="proc reveal" data-d="2"><div class="pdot">3</div><div class="pstep">Step 03</div><h3>Design &amp; Development</h3><p>We craft and build your high-converting site with you reviewing every milestone.</p></div>
-      <div class="proc reveal" data-d="3"><div class="pdot">4</div><div class="pstep">Step 04</div><h3>Launch &amp; Optimize</h3><p>We go live, track results, and fine-tune to keep your leads and bookings climbing.</p></div>
+      <div class="proc reveal" data-d="3"><div class="pdot">4</div><div class="pstep">Step 04</div><h3>Launch &amp; Optimize</h3><p>We go live, then monitor performance and identify improvements after launch.</p></div>
     </div>
   </div>
 </section>
