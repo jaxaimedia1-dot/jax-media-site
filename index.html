@@ -426,7 +426,9 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .svc .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted-2);position:absolute;top:30px;right:32px;}
 
 /* portfolio */
-.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
+/* only 2 case studies live right now -- 2 cols keeps them balanced instead of stretching
+   across 3; bump back to repeat(3,1fr) once a third project is added */
+.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:0 auto;}
 .port{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s var(--ease),border-color .45s;}
 .port:hover{transform:translateY(-7px);border-color:var(--border-2);}
 .port-shot{height:210px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
@@ -706,6 +708,7 @@ document.addEventListener('DOMContentLoaded', function(){
     <a href="#top" class="brand"><span class="mark"><img src="assets/logo.png" alt="Jax Media" /></span>Jax<span class="sub">Media</span></a>
     <div class="nav-links">
       <a href="#services" class="link">Services</a>
+      <a href="#work" class="link">Work</a>
       <a href="#pricing" class="link">Pricing</a>
       <a href="#process" class="link">Process</a>
       <a href="#faq" class="link">FAQ</a>
@@ -718,6 +721,7 @@ document.addEventListener('DOMContentLoaded', function(){
 </nav>
 <div class="mobile-menu" id="mobileMenu">
   <a href="#services">Services</a>
+  <a href="#work">Work</a>
   <a href="#pricing">Pricing</a>
   <a href="#process">Process</a>
   <a href="#faq">FAQ</a>
@@ -878,6 +882,42 @@ document.addEventListener('DOMContentLoaded', function(){
         <p>Complete funnels — forms, follow-ups, and automation — that capture and nurture every enquiry.</p>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- ========================= PORTFOLIO ========================= -->
+<section class="sec" id="work">
+  <div class="container">
+    <div class="section-head center reveal">
+      <span class="eyebrow center">Our Work</span>
+      <h2>Sites we've <em>built and shipped</em></h2>
+      <p>A look at real projects — from bold brand sites to our own.</p>
+    </div>
+    <div class="port-grid">
+      <div class="port reveal">
+        <div class="port-shot">
+          <img src="assets/portfolio/the-chosen-one.jpg" alt="The Chosen One homepage" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          <span class="badge">Fashion</span>
+        </div>
+        <div class="port-body">
+          <span class="cat">E-Commerce · Apparel</span>
+          <h3>The Chosen One</h3>
+          <p>A bold, typography-led storefront for a minimal clothing label — oversized display type and a clean grid built to let the product photography do the talking.</p>
+        </div>
+      </div>
+      <div class="port reveal" data-d="1">
+        <div class="port-shot">
+          <img src="assets/portfolio/jax-media.jpg" alt="Jax Media homepage" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          <span class="badge">Agency</span>
+        </div>
+        <div class="port-body">
+          <span class="cat">Marketing Site</span>
+          <h3>Jax Media</h3>
+          <p>Our own site — the 3D interactions, custom type system, and motion design you're looking at right now.</p>
+        </div>
+      </div>
+    </div>
+    <p class="port-disclaimer">More case studies added as projects launch.</p>
   </div>
 </section>
 
