@@ -426,9 +426,7 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .svc .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted-2);position:absolute;top:30px;right:32px;}
 
 /* portfolio */
-/* only 2 case studies live right now -- 2 cols keeps them balanced instead of stretching
-   across 3; bump back to repeat(3,1fr) once a third project is added */
-.port-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:22px;max-width:760px;margin:0 auto;}
+.port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
 .port{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;transition:transform .45s var(--ease),border-color .45s;}
 .port:hover{transform:translateY(-7px);border-color:var(--border-2);}
 .port-shot{height:210px;position:relative;overflow:hidden;border-bottom:1px solid var(--border);}
@@ -896,6 +894,17 @@ document.addEventListener('DOMContentLoaded', function(){
     <div class="port-grid">
       <div class="port reveal">
         <div class="port-shot">
+          <img src="assets/portfolio/gurney-landscaping.jpg" alt="Gurney Landscaping & Lawn Care homepage" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
+          <span class="badge">Landscaping</span>
+        </div>
+        <div class="port-body">
+          <span class="cat">Local Service · Client Site</span>
+          <h3>Gurney Landscaping</h3>
+          <p>A family-owned lawn care business in Rutland, VT — full-bleed photography, warm editorial type, and a clear path to booking a free estimate.</p>
+        </div>
+      </div>
+      <div class="port reveal" data-d="1">
+        <div class="port-shot">
           <img src="assets/portfolio/the-chosen-one.jpg" alt="The Chosen One homepage" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <span class="badge">Fashion</span>
         </div>
@@ -905,7 +914,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <p>A bold, typography-led storefront for a minimal clothing label — oversized display type and a clean grid built to let the product photography do the talking.</p>
         </div>
       </div>
-      <div class="port reveal" data-d="1">
+      <div class="port reveal" data-d="2">
         <div class="port-shot">
           <img src="assets/portfolio/jax-media.jpg" alt="Jax Media homepage" loading="lazy" style="width:100%;height:100%;object-fit:cover;object-position:top;" />
           <span class="badge">Agency</span>
