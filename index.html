@@ -457,6 +457,31 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .port-link:hover .arr{transform:translateX(4px);}
 .port-link.is-self{color:var(--muted-2);}
 
+/* on-site demo viewer */
+.demo-modal{position:fixed;inset:0;z-index:10000;display:none;align-items:center;justify-content:center;padding:3vh 3vw;background:rgba(15,23,42,.58);-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);}
+.demo-modal.open{display:flex;animation:demoIn .3s var(--ease);}
+@keyframes demoIn{from{opacity:0;}to{opacity:1;}}
+.demo-panel{width:100%;max-width:1360px;height:100%;display:flex;flex-direction:column;background:var(--surface);border-radius:20px;overflow:hidden;box-shadow:0 40px 100px -30px rgba(0,0,0,.55);}
+.demo-bar{flex:none;display:flex;align-items:center;gap:14px;padding:12px 16px 12px 22px;border-bottom:1px solid var(--border);background:var(--surface-2);}
+.demo-title{font-weight:600;font-size:15px;letter-spacing:-0.01em;}
+.demo-tag{font-family:var(--font-mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);border:1px solid rgba(36,86,230,.25);border-radius:6px;padding:3px 8px;}
+.demo-spacer{flex:1;}
+.demo-ext{font-family:var(--font-mono);font-size:12px;letter-spacing:.04em;color:var(--muted);text-decoration:none;white-space:nowrap;}
+.demo-ext:hover{color:var(--accent);text-decoration:underline;}
+.demo-close{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--border-2);background:var(--surface);color:var(--text);display:grid;place-items:center;cursor:pointer;transition:background .25s,color .25s;}
+.demo-close:hover{background:var(--text);color:#fff;}
+.demo-close:focus-visible,.demo-ext:focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+.demo-frame{position:relative;flex:1;background:#fff;}
+.demo-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0;background:#fff;}
+.demo-load{position:absolute;inset:0;display:grid;place-items:center;color:var(--muted-2);font-family:var(--font-mono);font-size:12px;letter-spacing:.1em;text-transform:uppercase;pointer-events:none;}
+body.demo-open{overflow:hidden;}
+@media(max-width:760px){
+  .demo-modal{padding:0;}
+  .demo-panel{border-radius:0;}
+  .demo-bar{padding:10px 12px 10px 16px;gap:10px;}
+  .demo-tag,.demo-ext span{display:none;}
+}
+
 /* why choose */
 .why-head{max-width:760px;margin-bottom:8px;}
 .why-title{font-family:var(--font-editorial);font-weight:500;font-size:clamp(44px,6vw,76px);line-height:0.98;margin-top:22px;letter-spacing:-0.005em;}
@@ -858,7 +883,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <span class="cat">Concept Website</span>
           <h3>Gurney Landscaping</h3>
           <p>A concept site for a lawn care brand — full-bleed photography, warm editorial type, and a clear path to booking a free estimate.</p>
-          <a class="port-link" href="https://jaxaimedia1-dot.github.io/gurney-landscaping-demo/" target="_blank" rel="noopener">View Demo <span class="arr">→</span></a>
+          <a class="port-link" href="https://jaxaimedia1-dot.github.io/gurney-landscaping-demo/" target="_blank" rel="noopener" data-demo="Gurney Landscaping">View Demo <span class="arr">→</span></a>
         </div>
       </div>
       <div class="port reveal" data-d="1">
@@ -870,7 +895,7 @@ document.addEventListener('DOMContentLoaded', function(){
           <span class="cat">Concept Website</span>
           <h3>The Chosen One</h3>
           <p>A bold, typography-led storefront for a minimal clothing label — oversized display type and a clean grid built to let the product photography do the talking.</p>
-          <a class="port-link" href="https://jaxaimedia1-dot.github.io/the-chosen-one-demo/" target="_blank" rel="noopener">View Demo <span class="arr">→</span></a>
+          <a class="port-link" href="https://jaxaimedia1-dot.github.io/the-chosen-one-demo/" target="_blank" rel="noopener" data-demo="The Chosen One">View Demo <span class="arr">→</span></a>
         </div>
       </div>
       <div class="port reveal" data-d="2">
@@ -1070,6 +1095,20 @@ document.addEventListener('DOMContentLoaded', function(){
   </div>
 </section>
 
+<!-- ========================= DEMO VIEWER ========================= -->
+<div class="demo-modal" id="demoModal" role="dialog" aria-modal="true" aria-labelledby="demoTitle" aria-hidden="true">
+  <div class="demo-panel">
+    <div class="demo-bar">
+      <span class="demo-title" id="demoTitle">Demo</span>
+      <span class="demo-tag">Concept Website</span>
+      <span class="demo-spacer"></span>
+      <a class="demo-ext" id="demoExt" href="#" target="_blank" rel="noopener"><span>Open in new tab </span>↗</a>
+      <button class="demo-close" id="demoClose" type="button" aria-label="Close demo"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="demo-frame"><div class="demo-load">Loading demo…</div><iframe id="demoFrame" title="Concept website demo" loading="lazy" referrerpolicy="no-referrer"></iframe></div>
+  </div>
+</div>
+
 <!-- ========================= FOOTER ========================= -->
 <footer>
   <div class="container">
@@ -1165,6 +1204,40 @@ document.addEventListener('DOMContentLoaded', function(){
       if(!isOpen){ faq.classList.add('open'); ans.style.maxHeight=ans.scrollHeight+'px'; }
     });
   });
+
+  /* on-site demo viewer */
+  (function(){
+    var modal=document.getElementById('demoModal'); if(!modal) return;
+    var frame=document.getElementById('demoFrame'), title=document.getElementById('demoTitle'), ext=document.getElementById('demoExt'), closeBtn=document.getElementById('demoClose');
+    var last=null;
+    function open(a){
+      last=a; title.textContent=a.getAttribute('data-demo')||'Demo';
+      ext.href=a.href; frame.src=a.href;
+      modal.classList.add('open'); modal.setAttribute('aria-hidden','false'); document.body.classList.add('demo-open');
+      closeBtn.focus();
+    }
+    function close(){
+      modal.classList.remove('open'); modal.setAttribute('aria-hidden','true'); document.body.classList.remove('demo-open');
+      frame.removeAttribute('src');
+      if(last) last.focus();
+    }
+    document.querySelectorAll('a[data-demo]').forEach(function(a){
+      a.addEventListener('click',function(e){
+        if(e.metaKey||e.ctrlKey||e.shiftKey||e.button===1) return;
+        e.preventDefault(); open(a);
+      });
+    });
+    closeBtn.addEventListener('click',close);
+    modal.addEventListener('click',function(e){ if(e.target===modal) close(); });
+    document.addEventListener('keydown',function(e){
+      if(!modal.classList.contains('open')) return;
+      if(e.key==='Escape'){ close(); }
+      else if(e.key==='Tab'){
+        var f=[closeBtn,ext]; var i=f.indexOf(document.activeElement);
+        e.preventDefault(); f[(i+(e.shiftKey?-1:1)+f.length)%f.length].focus();
+      }
+    });
+  })();
 
   /* services sliding flash cards */
   (function(){
