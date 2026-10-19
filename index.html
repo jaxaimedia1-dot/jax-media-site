@@ -338,15 +338,6 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 }
 
 /* ============================================================
-   MARQUEE / STATS STRIP
-   ============================================================ */
-.strip{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--bg-2);padding:34px 0;}
-.strip-inner{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;text-align:center;}
-.stat .num{font-family:var(--font-display);font-size:clamp(40px,5vw,58px);line-height:1;color:var(--text);}
-.stat .num em{color:var(--accent);font-style:normal;}
-.stat .lab{color:var(--muted);font-size:14px;margin-top:8px;letter-spacing:.01em;}
-
-/* ============================================================
    GENERIC SECTION SPACING
    ============================================================ */
 .sec{padding:120px 0;}
@@ -608,7 +599,6 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .glow.a{width:300px;height:300px;top:-100px;right:0;}
   .glow.b{width:260px;height:260px;bottom:-120px;left:0;}
   .contact-card .cglow{width:240px;height:240px;top:-80px;right:0;}
-  .strip-inner{grid-template-columns:repeat(3,1fr);gap:28px 14px;}
   .price-grid{grid-template-columns:1fr;}
   .price.feat{order:-1;}
   .sec{padding:84px 0;}
@@ -769,15 +759,6 @@ document.addEventListener('DOMContentLoaded', function(){
     </div>
   </div>
 </header>
-
-<!-- ========================= STATS STRIP ========================= -->
-<section class="strip">
-  <div class="container strip-inner">
-    <div class="stat reveal"><div class="num"><span data-count="2" data-suffix=" wks">0 wks</span></div><div class="lab">Average turnaround</div></div>
-    <div class="stat reveal" data-d="1"><div class="num"><span data-count="100" data-suffix="%">0%</span></div><div class="lab">Mobile responsive</div></div>
-    <div class="stat reveal" data-d="2"><div class="num"><span data-count="0.9" data-suffix="s">0s</span></div><div class="lab">Target load time</div></div>
-  </div>
-</section>
 
 <!-- ========================= SOLUTION ========================= -->
 <section class="sec-tight" id="solution" style="background:var(--bg-2);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
@@ -1163,33 +1144,6 @@ document.addEventListener('DOMContentLoaded', function(){
     });
   },{threshold:0.4});
   solCards.forEach(function(s){chkIo.observe(s);});
-
-  /* count-up numbers */
-  function animateCount(el){
-    var target=parseFloat(el.getAttribute('data-count'));
-    var suffix=el.getAttribute('data-suffix')||'';
-    var raw=el.getAttribute('data-count');
-    var hasSign=/^\+/.test(raw);
-    var decimals=(raw.split('.')[1]||'').replace('+','').length;
-    var dur=1500, start=null;
-    function step(ts){
-      if(!start)start=ts;
-      var p=Math.min((ts-start)/dur,1);
-      var eased=1-Math.pow(1-p,3);
-      var val=target*eased;
-      var out=decimals>0?val.toFixed(decimals):Math.round(val).toString();
-      el.textContent=(hasSign?'+':'')+out+suffix;
-      if(p<1)requestAnimationFrame(step);
-    }
-    requestAnimationFrame(step);
-  }
-  var counted=new WeakSet();
-  var cio=new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting && !counted.has(e.target)){ counted.add(e.target); animateCount(e.target); cio.unobserve(e.target); }
-    });
-  },{threshold:0.6});
-  document.querySelectorAll('[data-count]').forEach(function(el){cio.observe(el);});
 
   /* bars */
   var bio=new IntersectionObserver(function(entries){
