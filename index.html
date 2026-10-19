@@ -407,20 +407,75 @@ h1,h2,h3{font-weight:600;line-height:1.04;letter-spacing:-0.01em;}
 .bar i{display:block;height:100%;border-radius:6px;background:linear-gradient(90deg,var(--accent),var(--accent-soft));width:0;transition:width 1.4s var(--ease);}
 
 /* services */
-.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+/* services: floating glass cards orbiting the 3D J */
+.svc-stage{position:relative;height:880px;}
+.svc-stage::before{content:"";position:absolute;left:50%;top:50%;width:720px;height:720px;margin:-360px 0 0 -360px;background:radial-gradient(closest-side,rgba(36,86,230,.16),rgba(86,128,242,.06) 55%,transparent 75%);filter:blur(8px);pointer-events:none;}
+.svc-orbit{position:absolute;inset:0;perspective:1300px;pointer-events:none;z-index:0;}
+.svc-orbit i{position:absolute;left:50%;top:50%;border:1px solid rgba(36,86,230,.14);border-radius:50%;}
+.svc-orbit i:nth-child(1){width:1020px;height:1020px;margin:-510px 0 0 -510px;transform:rotateX(76deg) rotate(-6deg);}
+.svc-orbit i:nth-child(2){width:760px;height:760px;margin:-380px 0 0 -380px;transform:rotateX(76deg) rotate(8deg);border-color:rgba(36,86,230,.09);}
+.svc-core{position:absolute;left:50%;top:50%;width:400px;height:400px;margin:-200px 0 0 -200px;z-index:2;perspective:1300px;display:grid;place-items:center;pointer-events:none;}
+.svc-core .j3d{width:400px;height:400px;transform:rotateX(10deg) rotateY(-20deg);animation:svcJSway 9s ease-in-out infinite alternate;will-change:transform;}
+@keyframes svcJSway{from{transform:rotateX(10deg) rotateY(-30deg);}to{transform:rotateX(8deg) rotateY(-6deg);}}
+.svc-ring{position:absolute;inset:0;}
+.orb{position:absolute;left:calc(50% + var(--l));top:var(--t);width:var(--w);z-index:var(--zi,3);}
 .svc{
-  background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);
-  padding:32px;transition:transform .45s var(--ease),border-color .45s,background .45s;
+  --k:1;
   position:relative;overflow:hidden;
+  padding:22px 24px 24px;border-radius:22px;
+  background:rgba(255,255,255,.66);
+  -webkit-backdrop-filter:blur(14px) saturate(150%);backdrop-filter:blur(14px) saturate(150%);
+  border:1px solid rgba(255,255,255,.85);
+  box-shadow:0 0 0 1px rgba(15,23,42,.07),0 26px 50px -26px rgba(23,64,184,.38),0 3px 8px rgba(15,23,42,.05);
+  transform:perspective(1100px) translateZ(var(--z,0px)) rotateY(calc(var(--ry,0) * var(--k) * 1deg)) rotateX(calc(var(--rx,0) * var(--k) * 1deg)) rotate(calc(var(--rz,0) * var(--k) * 1deg));
+  transition:transform .55s var(--ease),box-shadow .45s;
+  animation:svcFloat 8s ease-in-out infinite;
 }
+.orb:nth-child(2) .svc{animation-duration:9.5s;animation-delay:-2s;}
+.orb:nth-child(3) .svc{animation-duration:7.5s;animation-delay:-4s;}
+.orb:nth-child(4) .svc{animation-duration:10s;animation-delay:-1s;}
+.orb:nth-child(5) .svc{animation-duration:8.5s;animation-delay:-5s;}
+.orb:nth-child(6) .svc{animation-duration:9s;animation-delay:-3s;}
+@keyframes svcFloat{0%,100%{translate:0 0;}50%{translate:0 -7px;}}
 .svc::before{content:"";position:absolute;inset:0;background:radial-gradient(420px circle at var(--mx,50%) var(--my,0%),rgba(36,86,230,.1),transparent 45%);opacity:0;transition:opacity .4s;pointer-events:none;}
-.svc:hover{transform:translateY(-6px);border-color:rgba(36,86,230,.3);}
+.svc:hover{transform:perspective(1100px) translateZ(calc(var(--z,0px) + 30px)) rotateY(calc(var(--ry,0) * var(--k) * .3deg)) rotateX(0deg) rotate(0deg);box-shadow:0 0 0 1px rgba(36,86,230,.28),0 34px 60px -26px rgba(23,64,184,.45),0 3px 8px rgba(15,23,42,.05);}
 .svc:hover::before{opacity:1;}
-.svc .ic{width:52px;height:52px;border-radius:13px;background:rgba(36,86,230,.1);border:1px solid rgba(36,86,230,.2);display:grid;place-items:center;color:var(--accent);margin-bottom:24px;transition:transform .45s var(--ease);}
+.svc-head{display:flex;align-items:center;gap:14px;margin-bottom:12px;}
+.svc .ic{flex:none;width:44px;height:44px;border-radius:12px;background:rgba(36,86,230,.1);border:1px solid rgba(36,86,230,.2);display:grid;place-items:center;color:var(--accent);transition:transform .45s var(--ease);}
 .svc:hover .ic{transform:scale(1.08) rotate(-4deg);}
-.svc h3{font-size:21px;font-weight:600;letter-spacing:-0.01em;margin-bottom:11px;font-family:var(--font-sans);}
+.svc h3{font-size:19px;font-weight:600;letter-spacing:-0.01em;line-height:1.2;font-family:var(--font-sans);}
 .svc p{color:var(--muted);font-size:15px;line-height:1.6;}
-.svc .tag{font-family:var(--font-mono);font-size:11px;letter-spacing:.1em;color:var(--muted-2);position:absolute;top:30px;right:32px;}
+@media(max-width:1240px) and (min-width:1101px){
+  .orb{margin-left:calc(var(--shift,0px));}
+  .orb:nth-child(1){--shift:36px;}
+  .orb:nth-child(2){--shift:-36px;}
+  .orb:nth-child(4){--shift:20px;}
+  .orb:nth-child(5){--shift:10px;}
+}
+@media(max-width:1100px){
+  .svc-stage{height:auto;display:flex;flex-direction:column;align-items:center;}
+  .svc-stage::before{top:170px;width:560px;height:560px;margin:-280px 0 0 -280px;}
+  .svc-orbit{display:none;}
+  .svc-core{position:relative;left:auto;top:auto;margin:0 0 -34px;width:320px;height:320px;}
+  .svc-core .j3d{width:320px;height:320px;}
+  .svc-ring{position:relative;inset:auto;width:100%;display:grid;grid-template-columns:repeat(2,1fr);gap:20px 22px;z-index:3;}
+  .orb{position:relative;left:auto;top:auto;width:auto;z-index:3;}
+  .orb:nth-child(even){margin-top:34px;}
+  .svc{--k:.35;--z:0px;}
+}
+@media(max-width:760px){
+  .svc-core{width:240px;height:240px;margin-bottom:-26px;}
+  .svc-core .j3d{width:240px;height:240px;}
+  .svc-stage::before{top:130px;width:420px;height:420px;margin:-210px 0 0 -210px;}
+  .svc-ring{grid-template-columns:1fr;gap:16px;}
+  .orb{width:calc(100% - 18px);}
+  .orb:nth-child(odd){justify-self:start;}
+  .orb:nth-child(even){justify-self:end;margin-top:0;}
+  .svc{--k:0;}
+}
+@media(prefers-reduced-motion:reduce){
+  .svc,.svc-core .j3d{animation:none;}
+}
 
 /* portfolio */
 .port-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;}
@@ -582,7 +637,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
 @media(max-width:1080px){
   .sol-wrap{grid-template-columns:1fr;gap:44px;}
   .why-img{width:150px;}
-  .svc-grid,.prob-grid,.port-grid{grid-template-columns:repeat(2,1fr);}
+  .prob-grid,.port-grid{grid-template-columns:repeat(2,1fr);}
   .proc-grid{grid-template-columns:repeat(2,1fr);gap:36px 20px;}
   .proc-line{display:none;}
   .contact-card{grid-template-columns:1fr;gap:48px;padding:48px;}
@@ -613,7 +668,7 @@ footer{border-top:1px solid var(--border);padding:64px 0 40px;margin-top:30px;}
   .foot-cols{gap:44px;}
 }
 @media(max-width:540px){
-  .svc-grid,.port-grid,.proc-grid{grid-template-columns:1fr;}
+  .port-grid,.proc-grid{grid-template-columns:1fr;}
   .prob-grid{grid-template-columns:1fr;column-gap:0;}
   .prob:nth-child(odd){padding-right:0;border-right:none;}
   .prob:nth-child(even){padding-left:0;}
@@ -699,6 +754,7 @@ function buildJ3D(hostId){
 document.addEventListener('DOMContentLoaded', function(){
   buildJ3D('j3d');
   buildJ3D('heroJ3d');
+  buildJ3D('svcJ3d');
 });
 </script>
 
@@ -848,36 +904,46 @@ document.addEventListener('DOMContentLoaded', function(){
       <h2>Everything you need to <em>grow online</em></h2>
       <p>From your first landing page to a full AI-powered lead engine — we handle it end to end.</p>
     </div>
-    <div class="svc-grid">
-      <div class="svc reveal">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 8h18"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/></svg></div>
-        <h3>Custom Business Websites</h3>
-        <p>Bespoke, conversion-focused sites built around your brand, your customers, and your goals.</p>
-      </div>
-      <div class="svc reveal" data-d="1">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6"/><rect x="9" y="15.5" width="6" height="3" rx="1.4" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Landing Pages</h3>
-        <p>High-impact pages engineered for ad campaigns and promotions that convert clicks into leads.</p>
-      </div>
-      <div class="svc reveal" data-d="2">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div>
-        <h3>Website Redesigns</h3>
-        <p>Transform a tired, underperforming site into a modern design built to earn trust and support sales.</p>
-      </div>
-      <div class="svc reveal">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="13" rx="3"/><path d="M9 18l-2 3v-3"/><circle cx="9" cy="11.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.1" fill="currentColor" stroke="none"/></svg></div>
-        <h3>AI Chatbot Integration</h3>
-        <p>Smart assistants that answer questions, qualify leads, and book appointments around the clock.</p>
-      </div>
-      <div class="svc reveal" data-d="1">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 12h4l2 6 4-13 2 7h6"/></svg></div>
-        <h3>Website Maintenance</h3>
-        <p>Updates, backups, security, and performance care so your site stays fast, safe, and current.</p>
-      </div>
-      <div class="svc reveal" data-d="2">
-        <div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></div>
-        <h3>Lead Generation Systems</h3>
-        <p>Complete funnels — forms, follow-ups, and automation — that capture and nurture every enquiry.</p>
+    <div class="svc-stage">
+      <div class="svc-orbit" aria-hidden="true"><i></i><i></i></div>
+      <div class="svc-core" aria-hidden="true"><div class="j3d" id="svcJ3d"></div></div>
+      <div class="svc-ring">
+        <div class="orb reveal" style="--l:-540px;--t:70px;--w:300px;--zi:1;">
+          <div class="svc" style="--ry:14;--rx:2;--rz:-3;--z:-50px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="4" width="18" height="15" rx="2"/><path d="M3 8h18"/><circle cx="6" cy="6" r="0.6" fill="currentColor"/></svg></div><h3>Custom Business Websites</h3></div>
+            <p>Bespoke, conversion-focused sites built around your brand, your customers, and your goals.</p>
+          </div>
+        </div>
+        <div class="orb reveal" data-d="1" style="--l:280px;--t:20px;--w:290px;--zi:1;">
+          <div class="svc" style="--ry:-14;--rx:2;--rz:3;--z:-30px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="5" y="3" width="14" height="18" rx="2"/><path d="M9 8h6M9 12h6"/><rect x="9" y="15.5" width="6" height="3" rx="1.4" fill="currentColor" stroke="none"/></svg></div><h3>Landing Pages</h3></div>
+            <p>High-impact pages engineered for ad campaigns and promotions that convert clicks into leads.</p>
+          </div>
+        </div>
+        <div class="orb reveal" data-d="2" style="--l:130px;--t:300px;--w:300px;--zi:3;">
+          <div class="svc" style="--ry:-16;--rx:-1;--rz:2;--z:60px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 4v5h-5"/></svg></div><h3>Website Redesigns</h3></div>
+            <p>Transform a tired, underperforming site into a modern design built to earn trust and support sales.</p>
+          </div>
+        </div>
+        <div class="orb reveal" style="--l:-440px;--t:330px;--w:290px;--zi:3;">
+          <div class="svc" style="--ry:16;--rx:-1;--rz:-2;--z:60px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><rect x="3" y="5" width="18" height="13" rx="3"/><path d="M9 18l-2 3v-3"/><circle cx="9" cy="11.5" r="1.1" fill="currentColor" stroke="none"/><circle cx="15" cy="11.5" r="1.1" fill="currentColor" stroke="none"/></svg></div><h3>AI Chatbot Integration</h3></div>
+            <p>Smart assistants that answer questions, qualify leads, and book appointments around the clock.</p>
+          </div>
+        </div>
+        <div class="orb reveal" data-d="1" style="--l:-330px;--t:650px;--w:290px;--zi:3;">
+          <div class="svc" style="--ry:10;--rx:-3;--rz:2;--z:10px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 12h4l2 6 4-13 2 7h6"/></svg></div><h3>Website Maintenance</h3></div>
+            <p>Updates, backups, security, and performance care so your site stays fast, safe, and current.</p>
+          </div>
+        </div>
+        <div class="orb reveal" data-d="2" style="--l:50px;--t:660px;--w:300px;--zi:3;">
+          <div class="svc" style="--ry:-10;--rx:-3;--rz:-2;--z:20px;">
+            <div class="svc-head"><div class="ic"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M3 4h18l-7 8v6l-4 2v-8z"/></svg></div><h3>Lead Generation Systems</h3></div>
+            <p>Complete funnels — forms, follow-ups, and automation — that capture and nurture every enquiry.</p>
+          </div>
+        </div>
       </div>
     </div>
   </div>
